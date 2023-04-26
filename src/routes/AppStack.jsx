@@ -13,7 +13,6 @@ export const AppStack = () => {
         style={{
           alignItems: "center",
           justifyContent: "center",
-          top: 10,
         }}
       >
         <Icon name={iconName} size={30} color={focused ? "#444" : "#d5d5d9"} />
