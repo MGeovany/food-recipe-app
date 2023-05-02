@@ -15,16 +15,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mgeovany.food-recipe-app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#ffffff",
+        "package": "com.mgeovany.food-recipe-app"
+      },
+      "package": "com.geovany.dev.foodrecipeapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f83ccfbd-66b2-4d9c-91e9-c8245d431457"
+      }
+    },
+    "owner": "geovany.dev"
   }
 }
