@@ -1,17 +1,105 @@
-import { Text } from "react-native";
-import { Image } from "react-native";
-import styled from "styled-components";
+import { StyleSheet } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
-export const PageLogo = styled(Image)`
-  width: 250px;
-  height: 250px;
-  position: fixed;
-  opacity: 1;
-`;
+export const styles = StyleSheet.create({
+  mainBtn: {
+    marginTop: "90px",
+    width: "214px",
+    height: "53px",
 
-export const Title = styled.Text`
-  font-size: 30px;
-  font-weight: bold;
-  color: red;
-  padding: 3rem;
-`;
+    alignItems: "center",
+    justifyContent: "center",
+
+    borderRadius: 15,
+
+    backgroundColor: "#5DBD21",
+    padding: 10,
+  },
+
+  pageLogo: {
+    width: "100%",
+    height: "300px",
+    marginTop: "80px",
+    alignItems: "center",
+  },
+
+  styledContainer: {
+    flex: 1,
+    padding: "25px",
+    paddingTop: `${StatusBar + 10}px`,
+    backgroundColor: "#fff",
+  },
+
+  innerContainer: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
+  },
+  pageTitle: {
+    fontFamily: "poppins-regular",
+    fontWeight: "700",
+    fontSize: "22px",
+    alignItems: "center",
+    color: "#333333",
+  },
+  titleLogo: {
+    fontFamily: "poppins-regular",
+    fontWeight: "bold",
+    fontSize: "26px",
+    color: "#5DBD21",
+  },
+
+  descText: {
+    fontFamily: "poppins-regular",
+    color: "#BBBABD",
+  },
+
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+
+  iconBack: {
+    backgroundColor: "#fff",
+    paddingBottom: "2rem",
+  },
+
+  roundedBtn: {
+    backgroundColor: "#FFFFFF",
+    border: "1px solid #CDDAE3",
+    borderRadius: "26px",
+
+    width: "342px",
+    height: "47px",
+
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+
+  textBtn: {
+    fontFamily: "poppins-regular",
+    fontWeight: "bold",
+    paddingLeft: "12px",
+  },
+
+  whiteText: {
+    color: "#fff",
+  },
+
+  fbBtn: {
+    backgroundColor: "#1977F2",
+  },
+});
+
+export const fbRoundedBtn = StyleSheet.compose(styles.roundedBtn, styles.fbBtn);
+
+export const fbTextBtn = StyleSheet.compose(styles.textBtn, styles.whiteText);
+
+export const mainTextBtn = StyleSheet.compose(styles.textBtn, styles.whiteText);
