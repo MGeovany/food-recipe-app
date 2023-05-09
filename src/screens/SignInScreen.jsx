@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StyleSheet, Text, View, Button, Pressable } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
@@ -13,9 +13,11 @@ import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/AntDesign";
 import { fbRoundedBtn, fbTextBtn, styles } from "../styles";
 import GoogleIcon from "../assets";
+import { useAppContext } from "../context/Auth";
 
 export const SignInScreen = () => {
-  const [userInfo, setUserInfo] = useState(null);
+  const { setAuthData, setUserInfo } = useAppContext();
+
   const [request, response, promptAsync] = Google.useAuthRequest({
     clientId: WEB_SECRET_CLIENT,
     webClientId: WEB_CLIENT_ID,
@@ -30,12 +32,14 @@ export const SignInScreen = () => {
   useEffect(() => {
     if (response?.type === "success") {
       const token = response.authentication.accessToken;
-      getUserInfo(token).then((response) => setUserInfo(response));
+      getUserInfo(token).then((response) => {
+        setAuthData(true);
+        setUserInfo(response);
+      });
     }
   }, [response]);
 
   const handleGoogleSession = () => {
-    console.log("handling");
     promptAsync();
   };
 
