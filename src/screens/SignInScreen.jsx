@@ -12,6 +12,7 @@ import { getUserInfo } from "../api/getUserInfo";
 import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/AntDesign";
 import { fbRoundedBtn, fbTextBtn, styles } from "../styles";
+import GoogleIcon from "../assets";
 
 export const SignInScreen = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -58,7 +59,7 @@ export const SignInScreen = () => {
         </View>
 
         <View style={styles.roundedBtn}>
-          <IconMaterial name="email" size={30} color="#333" />
+          <IconMaterial name="email" size={30} color="#444" />
           <Text style={styles.textBtn}>Iniciar sesion con mi Correo</Text>
         </View>
 
@@ -66,10 +67,11 @@ export const SignInScreen = () => {
           <Text style={styles.descText}>O tambien puedes</Text>
         </View>
 
-        <Pressable onPress={handleGoogleSession}>
+        <Pressable onPress={handleGoogleSession} disabled={!request}>
           <View style={{ marginBottom: "2rem" }}>
             <View style={styles.roundedBtn}>
-              <Icon name="google" size={30} color="#333" />
+              <GoogleIcon height={30} width={30} />
+
               <Text style={styles.textBtn}>Iniciar sesion con Google</Text>
             </View>
           </View>
@@ -90,18 +92,6 @@ export const SignInScreen = () => {
           >
             Crear una cuenta
           </Text>
-        </View>
-
-        <View style={styles.container}>
-          {userInfo === null ? (
-            <Button
-              title="Sign in with Google"
-              disabled={!request}
-              onPress={() => handleGoogleSession()}
-            />
-          ) : (
-            <Text style={styles.text}>{userInfo.name}</Text>
-          )}
         </View>
       </View>
     </>
