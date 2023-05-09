@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
 
   styledContainer: {
     flex: 1,
-    padding: "25px",
+    padding: "1rem",
     paddingTop: `${StatusBar + 10}px`,
     backgroundColor: "#fff",
   },

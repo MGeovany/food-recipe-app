@@ -1,13 +1,6 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import MasonryList from "@react-native-seoul/masonry-list";
-import {
-  FlatList,
-  View,
-  Text,
-  Image,
-  SafeAreaView,
-  StatusBar,
-} from "react-native";
+import { View, Text, Image } from "react-native";
 import { styles } from "../styles";
 
 export const RecomendationList = () => {
@@ -26,7 +19,7 @@ export const RecomendationList = () => {
     {
       title: "Tacos",
       imgUrl:
-        "https://images.pexels.com/photos/2565247/pexels-photo-2565247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/2092507/pexels-photo-2092507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
       title: "Sushi",
@@ -66,45 +59,52 @@ export const RecomendationList = () => {
   ];
 
   return (
-    <SafeAreaView>
-      <StatusBar />
-      <View>
-        <MasonryList
-          style={{
-            alignSelf: "stretch",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-          contentContainerStyle={{
-            alignSelf: "stretch",
-            justifyContent: "space-between",
-          }}
-          numColumns={2}
-          data={images}
-          renderItem={CardItem}
-        />
-      </View>
-    </SafeAreaView>
+    <View>
+      <MasonryList
+        contentContainerStyle={{
+          alignSelf: "stretch",
+        }}
+        numColumns={2}
+        data={images}
+        renderItem={CardItem}
+      />
+    </View>
   );
 };
 
 const CardItem = (items) => {
   const { item } = items;
-  console.log(item);
+  const randomBool = useMemo(() => Math.random() < 0.5, []);
+
   return (
-    <View key={item.title}>
-      <Image style={styles.recomendationPicture} source={item.imgUrl} />
-      <Text style={styles.descTitle}>{item.title}</Text>
-      <Text
+    <View key={items.id} style={{ marginTop: 12, flex: 1 }}>
+      <Image
         style={{
-          fontFamily: "poppins-regular",
-          color: "#BBBABD",
-          fontWeight: "bold",
-          marginBottom: "1.5rem",
+          height: randomBool ? 150 : 280,
+          alignSelf: "stretch",
+          borderRadius: "15px",
+          margin: "0.5rem",
+        }}
+        resizeMode="cover"
+        source={item.imgUrl}
+      />
+      <View
+        style={{
+          paddingLeft: "0.5rem",
+          marginBottom: "1rem",
         }}
       >
-        {item.desc || `By Oren Diligan`}
-      </Text>
+        <Text style={styles.descTitle}>{item.title}</Text>
+        <Text
+          style={{
+            fontFamily: "poppins-regular",
+            color: "#BBBABD",
+            fontWeight: "bold",
+          }}
+        >
+          {item.desc || `By Oren Diligan`}
+        </Text>
+      </View>
     </View>
   );
 };
