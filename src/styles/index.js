@@ -23,6 +23,17 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  profilePicture: {
+    width: "55px",
+    height: "55px",
+    borderRadius: "50px",
+  },
+  recomendationPicture: {
+    width: "160px",
+    height: "185px",
+    borderRadius: "15px",
+  },
+
   styledContainer: {
     flex: 1,
     padding: "25px",
@@ -95,6 +106,21 @@ export const styles = StyleSheet.create({
 
   fbBtn: {
     backgroundColor: "#1977F2",
+  },
+
+  mainTitle: {
+    fontFamily: "poppins-regular",
+
+    fontSize: "18px",
+    fontWeight: "bold",
+    margin: "1rem",
+  },
+  descTitle: {
+    fontFamily: "poppins-regular",
+
+    fontSize: "16px",
+    fontWeight: "bold",
+    marginTop: "0.5rem",
   },
 });
 

@@ -4,7 +4,7 @@ import { Router } from "./src/routes/Router";
 export default function App() {
   return (
     <AppContextProvider>
-      <Router />;
+      <Router />
     </AppContextProvider>
   );
 }
