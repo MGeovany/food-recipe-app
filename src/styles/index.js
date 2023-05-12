@@ -95,7 +95,7 @@ export const styles = StyleSheet.create({
     border: "1px solid #CDDAE3",
     borderRadius: "26px",
 
-    width: "342px",
+    width: "100%",
     height: "47px",
 
     alignItems: "center",
