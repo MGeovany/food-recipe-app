@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, Text, View } from "react-native";
 import { styles } from "../styles";
 
-export const SavedScreen = () => {
+export const SavedScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <View style={styles.styledContainer}>

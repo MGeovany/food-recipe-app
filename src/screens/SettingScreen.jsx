@@ -1,11 +1,15 @@
 import React from "react";
-import { Button, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
+import { styles } from "../styles";
 
-export const SettingScreen = () => {
+export const SettingScreen = ({ navigation }) => {
   return (
-    <View>
-      <Text>Setting Screen</Text>
-      <Button title="Sign Out" />
-    </View>
+    <ScrollView>
+      <View style={styles.styledContainer}>
+        <View style={styles.pageTitleContainer}>
+          <Text style={styles.pageTitle}>Settings</Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
