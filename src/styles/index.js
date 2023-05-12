@@ -52,7 +52,16 @@ export const styles = StyleSheet.create({
     fontSize: "22px",
     alignItems: "center",
     color: "#333333",
+    flexDirection: "row",
   },
+
+  pageTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+  },
+
   titleLogo: {
     fontFamily: "poppins-regular",
     fontWeight: "bold",

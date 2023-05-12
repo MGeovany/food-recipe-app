@@ -1,6 +1,8 @@
 import React from "react";
 import { HomeScreen } from "../screens/HomeScreen";
+import { SearchScreen } from "../screens/SearchScreen";
 import { SettingScreen } from "../screens/SettingScreen";
+import { SavedScreen } from "../screens/SavedScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, View, Text } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -46,10 +48,9 @@ export const AppStack = () => {
         name="Home"
         component={HomeScreen}
       />
-
       <Tab.Screen
         name="Search"
-        component={SettingScreen}
+        component={SearchScreen}
         options={tabScreenOptions("search", "Search")}
       />
       <Tab.Screen
