@@ -38,16 +38,13 @@ export const AppStack = () => {
           backgroundColor: "#fff",
           borderRadius: 15,
           height: 90,
-          borderTopWidth: 0,
+          borderColor: "#16ad486f", // set the border color of the tabBarStyle
+
+          borderWidth: 3,
           ...styles.shadow,
         },
       }}
     >
-      <Tab.Screen
-        name="Bookmarks"
-        component={SavedScreen}
-        options={tabScreenOptions("bookmark", "Saved")}
-      />
       <Tab.Screen
         options={tabScreenOptions("home", "Home")}
         name="Home"
@@ -58,7 +55,11 @@ export const AppStack = () => {
         component={SearchScreen}
         options={tabScreenOptions("search", "Search")}
       />
-
+      <Tab.Screen
+        name="Bookmarks"
+        component={SavedScreen}
+        options={tabScreenOptions("bookmark", "Saved")}
+      />
       <Tab.Screen
         name="Setting"
         component={SettingScreen}

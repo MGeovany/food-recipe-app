@@ -28,6 +28,27 @@ export const styles = StyleSheet.create({
     height: "55px",
     borderRadius: "50px",
   },
+
+  inputForm: {
+    width: "342px",
+    height: "47px",
+
+    backgroundColor: "#F7F8FA",
+    border: "1px solid #EBEFF2",
+    borderRadius: "11px",
+
+    fontFamily: "poppins-regular",
+    fontWeight: "700",
+    fontSize: "15px",
+    color: "#333333",
+    paddingLeft: "1rem",
+
+    marginVertical: "1rem",
+    "&:focus": {
+      borderColor: "red",
+    },
+  },
+
   recomendationPicture: {
     width: "160px",
     height: "185px",
@@ -39,6 +60,7 @@ export const styles = StyleSheet.create({
     padding: "1rem",
     paddingTop: `${StatusBar + 10}px`,
     backgroundColor: "#fff",
+    height: "100%",
   },
 
   innerContainer: {
