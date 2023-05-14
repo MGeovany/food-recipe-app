@@ -17,8 +17,12 @@ export const AppStack = () => {
           justifyContent: "center",
         }}
       >
-        <Icon name={iconName} size={30} color={focused ? "#444" : "#d5d5d9"} />
-        <Text style={{ color: focused ? "#444" : "#d5d5d9" }}>{title}</Text>
+        <Icon
+          name={iconName}
+          size={30}
+          color={focused ? "#5DBD21" : "#d5d5d9"}
+        />
+        <Text style={{ color: focused ? "#5DBD21" : "#d5d5d9" }}>{title}</Text>
       </View>
     ),
   });
@@ -38,8 +42,7 @@ export const AppStack = () => {
           backgroundColor: "#fff",
           borderRadius: 15,
           height: 90,
-          borderColor: "#16ad486f", // set the border color of the tabBarStyle
-
+          borderColor: "#d3dee87c",
           borderWidth: 3,
           ...styles.shadow,
         },
