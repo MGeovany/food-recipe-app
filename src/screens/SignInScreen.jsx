@@ -12,7 +12,7 @@ import { getUserInfo } from "../api/getUserInfo";
 import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/AntDesign";
 import { fbRoundedBtn, fbTextBtn, styles } from "../styles";
-import GoogleIcon from "../assets";
+import GoogleIcon from "../assets/icons";
 import { useAppContext } from "../context/Auth";
 
 export const SignInScreen = () => {
