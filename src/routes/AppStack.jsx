@@ -1,5 +1,4 @@
 import React from "react";
-import { HomeScreen } from "../screens/HomeScreen";
 import { SearchScreen } from "../screens/SearchScreen";
 import { SettingScreen } from "../screens/SettingScreen";
 import { SavedScreen } from "../screens/SavedScreen";
@@ -7,7 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, View, Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Main } from "../screens/Main";
-import { QueVamosAComerHoy } from "../assets/icons";
+import { HomeStackScreen } from "./HomeStackScreen";
 
 export const AppStack = () => {
   const Tab = createBottomTabNavigator();
@@ -62,20 +61,20 @@ export const AppStack = () => {
       }}
     >
       <Tab.Screen
-        name="Que-vamos-a-comer-hoy"
-        component={Main}
-        options={tabScreenOptions("main", "")}
-      />
-
-      <Tab.Screen
         options={tabScreenOptions("home", "Home")}
         name="Home"
-        component={HomeScreen}
+        component={HomeStackScreen}
       />
       <Tab.Screen
         name="Search"
         component={SearchScreen}
         options={tabScreenOptions("search", "Search")}
+      />
+
+      <Tab.Screen
+        name="Que-vamos-a-comer-hoy"
+        component={Main}
+        options={tabScreenOptions("main", "")}
       />
 
       <Tab.Screen

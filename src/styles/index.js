@@ -144,7 +144,7 @@ export const styles = StyleSheet.create({
 
     fontSize: "18px",
     fontWeight: "bold",
-    margin: "1rem",
+    marginVertical: "1rem",
   },
   descTitle: {
     fontFamily: "poppins-regular",
