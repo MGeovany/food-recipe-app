@@ -4,7 +4,6 @@ import { useFonts } from "expo-font";
 import { AppStack } from "./AppStack";
 import { AuthStack } from "./AuthStack";
 import { loadFonts } from "../styles/expoFont";
-import { useAppContext } from "../context/Auth";
 
 export const Router = () => {
   // const { authData } = useAppContext();
