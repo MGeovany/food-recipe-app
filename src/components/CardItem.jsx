@@ -2,14 +2,21 @@ import React, { useState } from "react";
 import { styles } from "../styles";
 import { View, Text, Image, Pressable } from "react-native";
 
-export const CardItem = ({ items, randomBool }) => {
+export const CardItem = ({ items, randomBool, addBtn }) => {
   const { item } = items;
   const [addedState, setAddedState] = useState(false);
+  const [removedtate, setRemovedState] = useState(false);
 
   const handleAddReceipt = () => {
     setAddedState(true);
     setTimeout(() => {
       setAddedState(false);
+    }, 1000);
+  };
+  const handleRemoveReceipt = () => {
+    setRemovedState(true);
+    setTimeout(() => {
+      setRemovedState(false);
     }, 1000);
   };
 
@@ -32,21 +39,39 @@ export const CardItem = ({ items, randomBool }) => {
           resizeMode="cover"
           source={item.imgUrl}
         />
-        <Pressable onPress={handleAddReceipt}>
-          <Image
-            source={require(`../assets/icons/${
-              addedState ? "done" : "add"
-            }.png`)}
-            style={{
-              height: 32,
-              width: 32,
-              position: "absolute",
-              bottom: 0,
-              right: 0,
-              margin: 8,
-            }}
-          />
-        </Pressable>
+        {addBtn ? (
+          <Pressable onPress={handleAddReceipt}>
+            <Image
+              source={require(`../assets/icons/${
+                addedState ? "done" : "add"
+              }.png`)}
+              style={{
+                height: 32,
+                width: 32,
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                margin: 8,
+              }}
+            />
+          </Pressable>
+        ) : (
+          <Pressable onPress={handleRemoveReceipt}>
+            <Image
+              source={require(`../assets/icons/${
+                removedtate ? "done" : "remove"
+              }.png`)}
+              style={{
+                height: 24,
+                width: 24,
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                margin: 8,
+              }}
+            />
+          </Pressable>
+        )}
       </View>
 
       <View

@@ -75,5 +75,5 @@ export const RecomendationList = ({ categorie }) => {
 const Card = (items) => {
   const randomBool = useMemo(() => Math.random() < 0.5, []);
 
-  return <CardItem randomBool={randomBool} items={items} />;
+  return <CardItem randomBool={randomBool} items={items} addBtn={true} />;
 };
