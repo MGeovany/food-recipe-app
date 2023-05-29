@@ -37,7 +37,7 @@ export const SearchScreen = ({ navigation }) => {
           />
         </View>
         <View>
-          <SearchList />
+          <SearchList navigation={navigation} />
         </View>
       </View>
     </ScrollView>

@@ -4,7 +4,7 @@ import { View, Text, Image } from "react-native";
 import { styles } from "../styles";
 import { CardItem } from "./CardItem";
 
-export const SearchList = () => {
+export const SearchList = ({ navigation }) => {
   const [isLoadingNext, setIsLoadingNext] = useState(false);
   const images = [
     {
@@ -67,15 +67,10 @@ export const SearchList = () => {
         }}
         numColumns={2}
         data={images}
-        renderItem={Card}
+        renderItem={({ item }) => (
+          <CardItem item={item} navigation={navigation} addBtn={true} />
+        )}
       />
     </View>
   );
-};
-
-const Card = (items) => {
-  const { item } = items;
-  const randomBool = useMemo(() => Math.random() < 0.5, []);
-
-  return <CardItem items={items} randomBool={randomBool} addBtn={true} />;
 };

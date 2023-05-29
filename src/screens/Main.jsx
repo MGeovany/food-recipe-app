@@ -13,12 +13,6 @@ export const Main = ({ navigation }) => {
       }}
     >
       <View style={styles.styledContainer}>
-        <Icon
-          name="back"
-          size={30}
-          onPress={() => navigation.navigate("Home")}
-          style={styles.iconBack}
-        />
         <View
           style={{
             display: "flex",

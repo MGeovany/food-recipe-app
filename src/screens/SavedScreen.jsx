@@ -27,7 +27,7 @@ export const SavedScreen = ({ navigation }) => {
           </Text>
           <Text style={styles.pageTitle}>para mas tarde</Text>
         </View>
-        <SavedList />
+        <SavedList navigation={navigation} />
       </View>
     </ScrollView>
   );

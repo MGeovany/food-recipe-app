@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
 import MasonryList from "@react-native-seoul/masonry-list";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import { CardItem } from "./CardItem";
 
-export const RecomendationList = ({ categorie }) => {
+export const RecomendationList = ({ categorie, navigation }) => {
   const [isLoadingNext, setIsLoadingNext] = useState(false);
   const images = [
     {
@@ -66,14 +66,10 @@ export const RecomendationList = ({ categorie }) => {
         }}
         numColumns={2}
         data={images}
-        renderItem={Card}
+        renderItem={({ item }) => (
+          <CardItem item={item} navigation={navigation} addBtn={true} />
+        )}
       />
     </View>
   );
-};
-
-const Card = (items) => {
-  const randomBool = useMemo(() => Math.random() < 0.5, []);
-
-  return <CardItem randomBool={randomBool} items={items} addBtn={true} />;
 };
