@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
 import MasonryList from "@react-native-seoul/masonry-list";
 import { View, Text, Image } from "react-native";
-import { styles } from "../styles";
+import { CardItem } from "./CardItem";
 
-export const RecomendationList = () => {
+export const RecomendationList = ({ categorie }) => {
   const [isLoadingNext, setIsLoadingNext] = useState(false);
   const images = [
     {
@@ -66,45 +66,14 @@ export const RecomendationList = () => {
         }}
         numColumns={2}
         data={images}
-        renderItem={CardItem}
+        renderItem={Card}
       />
     </View>
   );
 };
 
-const CardItem = (items) => {
-  const { item } = items;
+const Card = (items) => {
   const randomBool = useMemo(() => Math.random() < 0.5, []);
 
-  return (
-    <View key={items.id} style={{ marginTop: 12, flex: 1 }}>
-      <Image
-        style={{
-          height: randomBool ? 150 : 280,
-          alignSelf: "stretch",
-          borderRadius: "15px",
-          margin: "0.5rem",
-        }}
-        resizeMode="cover"
-        source={item.imgUrl}
-      />
-      <View
-        style={{
-          paddingLeft: "0.5rem",
-          marginBottom: "1rem",
-        }}
-      >
-        <Text style={styles.descTitle}>{item.title}</Text>
-        <Text
-          style={{
-            fontFamily: "poppins-regular",
-            color: "#BBBABD",
-            fontWeight: "bold",
-          }}
-        >
-          {item.desc || `By Oren Diligan`}
-        </Text>
-      </View>
-    </View>
-  );
+  return <CardItem randomBool={randomBool} items={items} />;
 };

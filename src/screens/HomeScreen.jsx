@@ -88,7 +88,7 @@ export const HomeScreen = ({ navigation }) => {
                 ? `Recetas ${categoryTitle} populares`
                 : "Recomendacion del dia"}
             </Text>
-            <RecomendationList />
+            <RecomendationList categorie={categorie} />
           </View>
         )}
       </View>
