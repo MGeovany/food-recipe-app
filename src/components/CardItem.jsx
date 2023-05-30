@@ -21,7 +21,11 @@ export const CardItem = ({ item, addBtn, navigation }) => {
   };
 
   const handleOpenReceipt = () => {
-    navigation.navigate("DetailsScreen");
+    navigation.navigate("DetailsScreen", {
+      receiptId: item.imgUrl,
+      receiptName: item.title,
+      receiptImage: item.imgUrl,
+    });
   };
 
   return (
