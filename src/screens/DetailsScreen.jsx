@@ -3,6 +3,7 @@ import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { SECONDARY_TEXT_COLOR } from "../utils/colors";
 import { Taste } from "../components/Taste";
+import { ReceiptDetails } from "./ReceiptDetails";
 
 export const DetailsScreen = ({ route, navigation }) => {
   const { receiptId, receiptImage, receiptName } = route.params;
@@ -71,6 +72,7 @@ export const DetailsScreen = ({ route, navigation }) => {
         />
       </View>
       <Taste />
+      <ReceiptDetails />
     </ScrollView>
   );
 };
