@@ -1,6 +1,8 @@
 import React from "react";
-import { View, Text, Image, Pressable } from "react-native";
+import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { SECONDARY_TEXT_COLOR } from "../utils/colors";
+import { Taste } from "../components/Taste";
 
 export const DetailsScreen = ({ route, navigation }) => {
   const { receiptId, receiptImage, receiptName } = route.params;
@@ -68,7 +70,7 @@ export const DetailsScreen = ({ route, navigation }) => {
           resizeMode="cover"
         />
       </View>
-      <View style={{ backgroundColor: "white", top: -12 }}></View>
+      <Taste />
     </ScrollView>
   );
 };
