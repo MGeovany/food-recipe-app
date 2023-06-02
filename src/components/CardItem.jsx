@@ -2,10 +2,13 @@ import React, { useMemo, useState } from "react";
 import { styles } from "../styles";
 import { View, Text, Image, Pressable } from "react-native";
 
-export const CardItem = ({ item, addBtn, navigation }) => {
+export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
   const [addedState, setAddedState] = useState(false);
-  const [removedtate, setRemovedState] = useState(false);
-  const randomBool = useMemo(() => Math.random() < 0.5, []);
+  const [removedState, setRemovedState] = useState(false);
+
+  const randomBool = randomHeight
+    ? useMemo(() => Math.random() < 0.5, [])
+    : false;
 
   const handleAddReceipt = () => {
     setAddedState(true);
@@ -33,7 +36,7 @@ export const CardItem = ({ item, addBtn, navigation }) => {
       <View key={item.imgUrl} style={{ marginTop: 12, flex: 1 }}>
         <View
           style={{
-            height: randomBool ? 150 : 280,
+            height: randomBool ? 280 : 150,
             position: "relative",
             padding: "0.2rem",
           }}
@@ -69,7 +72,7 @@ export const CardItem = ({ item, addBtn, navigation }) => {
             <Pressable onPress={handleRemoveReceipt}>
               <Image
                 source={require(`../assets/icons/${
-                  removedtate ? "done" : "remove"
+                  removedState ? "done" : "remove"
                 }.png`)}
                 style={{
                   height: 24,

@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from "react";
 import MasonryList from "@react-native-seoul/masonry-list";
 import { View, Text, Image } from "react-native";
-import { styles } from "../styles";
 import { CardItem } from "./CardItem";
 
 export const SavedList = ({ navigation }) => {
@@ -68,7 +67,12 @@ export const SavedList = ({ navigation }) => {
         numColumns={2}
         data={images}
         renderItem={({ item }) => (
-          <CardItem item={item} navigation={navigation} addBtn={true} />
+          <CardItem
+            item={item}
+            navigation={navigation}
+            addBtn={true}
+            randomHeight={true}
+          />
         )}
       />
     </View>

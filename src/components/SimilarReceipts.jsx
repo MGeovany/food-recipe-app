@@ -7,85 +7,105 @@ import {
   LUNCH_CTG,
   VEGGIES_CTG,
 } from "../utils/constants";
-import { Pressable, View, Text } from "react-native";
+import { Pressable, View, Text, StyleSheet } from "react-native";
+import { SECONDARY_TEXT_COLOR } from "../utils/colors";
+import { CardItem } from "./CardItem";
 
-export const SimilarReceipts = () => {
+export const SimilarReceipts = ({ navigation }) => {
   const ref = useRef(null);
 
-  const categories = {
-    activeIndex: 0,
-    categorieItems: [
-      {
-        icon: "🥞",
-        text: "Desayunos",
-        value: BREAKFAST_CTG,
-      },
-      {
-        icon: "🍝",
-        text: "Almuerzo",
-        value: LUNCH_CTG,
-      },
-      {
-        icon: "🍕",
-        text: "Cena",
-        value: DINNER_CTG,
-      },
-      {
-        icon: "🍨",
-        text: "Postre",
-        value: DESSERT_CTG,
-      },
-      {
-        icon: "🥑",
-        text: "Veggies",
-        value: VEGGIES_CTG,
-      },
-    ],
-  };
-
-  const renderItem = ({ item }) => {
-    return (
-      <Pressable>
-        <View
-          style={{
-            borderRadius: 10,
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            width: "150px",
-            height: "100px",
-            padding: 6,
-            marginLeft: 15,
-            marginRight: 15,
-          }}
-        >
-          <Text style={{ fontSize: 50, fontFamily: "poppins-regular" }}>
-            {item.icon}
-          </Text>
-          <Text
-            style={{
-              fontSize: 15,
-              fontFamily: "poppins-regular",
-              fontWeight: "bold",
-            }}
-          >
-            {item.text}
-          </Text>
-        </View>
-      </Pressable>
-    );
-  };
+  const images = [
+    {
+      title: "Pizza",
+      imgUrl:
+        "https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      title: "Burger",
+      imgUrl:
+        "https://images.pexels.com/photos/15818983/pexels-photo-15818983.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      title: "Tacos",
+      imgUrl:
+        "https://images.pexels.com/photos/2092507/pexels-photo-2092507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      title: "Sushi",
+      imgUrl:
+        "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      title: "Salad",
+      imgUrl:
+        "https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      title: "Pancakes",
+      imgUrl:
+        "https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      title: "Steak",
+      imgUrl:
+        "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      title: "Seafood",
+      imgUrl:
+        "https://images.pexels.com/photos/725992/pexels-photo-725992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      title: "Noodles",
+      imgUrl:
+        "https://images.pexels.com/photos/17677/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      title: "Sandwich",
+      imgUrl:
+        "https://images.pexels.com/photos/5586268/pexels-photo-5586268.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+  ];
 
   return (
-    <Carousel
-      style={{ width: "100%", marginBottom: "2rem" }}
-      ref={ref}
-      pagingEnabled={true}
-      width={170}
-      height={220 / 2}
-      autoPlay={false}
-      data={categories.categorieItems}
-      renderItem={renderItem}
-    />
+    <View style={styles.blockP}>
+      <Text style={styles.secondaryTitle}>Recetas similares</Text>
+      <Carousel
+        style={{ width: "100%" }}
+        ref={ref}
+        pagingEnabled={true}
+        width={164}
+        height={520 / 2}
+        autoPlay={true}
+        data={images}
+        renderItem={({ item }) => (
+          <CardItem
+            item={item}
+            navigation={navigation}
+            addBtn={true}
+            randomHeight={false}
+          />
+        )}
+      />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  secondaryTitle: {
+    fontFamily: "poppins-regular",
+    fontWeight: "900",
+    fontSize: "18px",
+  },
+
+  contentText: {
+    fontFamily: "poppins-regular",
+    fontSize: "16px",
+    color: SECONDARY_TEXT_COLOR,
+    lineHeight: "2",
+  },
+  blockP: {
+    backgroundColor: "white",
+    paddingHorizontal: "2rem",
+  },
+});

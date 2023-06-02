@@ -67,7 +67,12 @@ export const RecomendationList = ({ categorie, navigation }) => {
         numColumns={2}
         data={images}
         renderItem={({ item }) => (
-          <CardItem item={item} navigation={navigation} addBtn={true} />
+          <CardItem
+            item={item}
+            navigation={navigation}
+            addBtn={true}
+            randomHeight={true}
+          />
         )}
       />
     </View>

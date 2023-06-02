@@ -11,7 +11,12 @@ export const DetailsScreen = ({ route, navigation }) => {
   const { receiptId, receiptImage, receiptName } = route.params;
 
   return (
-    <ScrollView>
+    <ScrollView
+      style={{
+        paddingBottom: "10rem",
+        backgroundColor: "white",
+      }}
+    >
       <View
         style={{
           position: "relative",
@@ -31,7 +36,7 @@ export const DetailsScreen = ({ route, navigation }) => {
       </View>
       <Taste />
       <ReceiptDetails />
-      <SimilarReceipts />
+      <SimilarReceipts navigation={navigation} />
     </ScrollView>
   );
 };
