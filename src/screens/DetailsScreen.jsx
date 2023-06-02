@@ -1,9 +1,11 @@
 import React from "react";
-import { View, Text, Image, Pressable, StyleSheet } from "react-native";
+import { View, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { SECONDARY_TEXT_COLOR } from "../utils/colors";
 import { Taste } from "../components/Taste";
 import { ReceiptDetails } from "./ReceiptDetails";
+import { SimilarReceipts } from "../components/SimilarReceipts";
+import { BackButton } from "../components/BackButton";
+import { SaveButton } from "../components/SaveButton";
 
 export const DetailsScreen = ({ route, navigation }) => {
   const { receiptId, receiptImage, receiptName } = route.params;
@@ -15,52 +17,8 @@ export const DetailsScreen = ({ route, navigation }) => {
           position: "relative",
         }}
       >
-        <Pressable
-          onPress={() => navigation.goBack()}
-          style={{
-            backgroundColor: "white",
-            borderRadius: 50,
-            width: "40px",
-            height: "40px",
-            position: "absolute",
-            top: 15,
-            left: 15,
-            zIndex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Image
-            source={require("../assets/icons/back.png")}
-            style={{
-              height: "30px",
-              width: "30px",
-            }}
-          />
-        </Pressable>
-        <Pressable
-          style={{
-            backgroundColor: "white",
-            borderRadius: 50,
-            width: "40px",
-            height: "40px",
-            position: "absolute",
-            top: 15,
-            right: 15,
-            zIndex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Image
-            source={require("../assets/icons/love.png")}
-            style={{
-              height: "30px",
-              width: "30px",
-            }}
-          />
-        </Pressable>
-
+        <BackButton navigation={navigation} />
+        <SaveButton />
         <Image
           source={receiptImage}
           style={{
@@ -73,6 +31,7 @@ export const DetailsScreen = ({ route, navigation }) => {
       </View>
       <Taste />
       <ReceiptDetails />
+      <SimilarReceipts />
     </ScrollView>
   );
 };

@@ -4,7 +4,10 @@ import { SettingScreen } from "../screens/SettingScreen";
 import { SavedScreen } from "../screens/SavedScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, View, Text, Image } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+
+import Icon from "react-native-vector-icons/EvilIcons";
+import IconHome from "react-native-vector-icons/AntDesign";
+
 import { Main } from "../screens/Main";
 import { HomeStackScreen } from "./HomeStackScreen";
 
@@ -25,6 +28,12 @@ export const AppStack = () => {
               height: "51px",
             }}
             source={require("../assets/icons/icon.png")}
+          />
+        ) : iconName === "home" ? (
+          <IconHome
+            name={iconName}
+            size={30}
+            color={focused ? "#5DBD21" : "#292d32"}
           />
         ) : (
           <Icon
@@ -80,7 +89,7 @@ export const AppStack = () => {
       <Tab.Screen
         name="Bookmarks"
         component={SavedScreen}
-        options={tabScreenOptions("bookmark", "Saved")}
+        options={tabScreenOptions("heart", "Liked")}
       />
       <Tab.Screen
         name="Setting"
