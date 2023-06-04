@@ -3,14 +3,13 @@ import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import { SECONDARY_TEXT_COLOR } from "../utils/colors";
 import { getTasteById } from "../api/Recipes";
 
-export const Taste = (tasteId) => {
+export const Taste = ({ tasteId }) => {
   const [tasteData, setTasteData] = useState([]);
 
   useEffect(() => {
     const fetchTasteData = async () => {
       const data = await getTasteById(tasteId);
       setTasteData(data);
-      console.log(data);
     };
     fetchTasteData();
   }, []);
@@ -19,32 +18,32 @@ export const Taste = (tasteId) => {
     {
       name: "Dulce",
       img: "sweet",
-      points: tasteData.sweetness,
+      points: tasteData?.sweetness,
     },
     {
       name: "Salado",
       img: "salt",
-      points: tasteData.saltiness,
+      points: tasteData?.saltiness,
     },
     {
       name: "Amargo",
       img: "sour",
-      points: tasteData.bitterness,
+      points: tasteData?.bitterness,
     },
     {
       name: "Sabroso",
       img: "tasty",
-      points: tasteData.savoriness,
+      points: tasteData?.savoriness,
     },
     {
       name: "Gordura",
       img: "fat",
-      points: tasteData.fattiness,
+      points: tasteData?.fattiness,
     },
     {
       name: "Picante",
       img: "spicy",
-      points: tasteData.spiciness,
+      points: tasteData?.spiciness,
     },
   ];
 

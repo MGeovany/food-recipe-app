@@ -23,10 +23,10 @@ export const getRandomRecipe = async (amount, tags) => {
   }
 };
 
-export const getTasteById = async () => {
+export const getTasteById = async (tasteId) => {
   const options = {
     method: "GET",
-    url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/69095/tasteWidget.json",
+    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${tasteId}/tasteWidget.json`,
     params: { normalize: "false" },
     headers: {
       "X-RapidAPI-Key": API_KEY,
