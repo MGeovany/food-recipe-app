@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Text, View } from "react-native";
 import { styles } from "../styles";
 import { useAppContext } from "../context/Auth";
 import { Searchbar } from "react-native-paper";
 import { CategoriesCarousel } from "../components/CategoriesCarousel";
-import { RecomendationList } from "../components/RecomendationList";
+import { RecommendationList } from "../components/RecommendationList";
 import { ScrollView } from "react-native";
 import {
   BREAKFAST_CTG,
@@ -13,11 +13,13 @@ import {
   LUNCH_CTG,
   VEGGIES_CTG,
 } from "../utils/constants";
+import { getRandomRecipe } from "../api/Recipes";
 
 export const HomeScreen = ({ navigation }) => {
   const { userInfo } = useAppContext();
   const [searchQuery, setSearchQuery] = useState("");
-  const [categorie, setCategorie] = useState("Breakfast");
+  const [category, setCategory] = useState(null);
+  const [dataList, setDataList] = useState([]);
 
   const onChangeSearch = (query) => {
     setSearchQuery(query);
@@ -32,7 +34,15 @@ export const HomeScreen = ({ navigation }) => {
     [VEGGIES_CTG]: "Veggies",
   };
 
-  const categoryTitle = categoryTitles[categorie];
+  useEffect(() => {
+    const fetchRandomRecipes = async () => {
+      const data = await getRandomRecipe(10, category);
+      setDataList(data.recipes);
+    };
+    fetchRandomRecipes();
+  }, [category]);
+
+  const categoryTitle = categoryTitles[category];
 
   return (
     <ScrollView>
@@ -79,18 +89,24 @@ export const HomeScreen = ({ navigation }) => {
         />
 
         <Text style={styles.mainTitle}>Categories</Text>
-        <CategoriesCarousel setCategorie={setCategorie} categorie={categorie} />
+        <CategoriesCarousel setCategory={setCategory} category={category} />
 
-        {categorie === null || !categoryTitle ? null : (
+        {category === null ? (
+          <View>
+            <Text style={styles.mainTitle}>Recomendacion del dia</Text>
+          </View>
+        ) : (
           <View>
             <Text style={styles.mainTitle}>
-              {categoryTitle
-                ? `Recetas ${categoryTitle} populares`
-                : "Recomendacion del dia"}
+              Recetas {categoryTitle} populares
             </Text>
-            <RecomendationList categorie={categorie} navigation={navigation} />
           </View>
         )}
+        <RecommendationList
+          category={category}
+          navigation={navigation}
+          recipes={dataList}
+        />
       </View>
     </ScrollView>
   );

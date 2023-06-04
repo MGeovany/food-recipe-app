@@ -25,15 +25,15 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
 
   const handleOpenReceipt = () => {
     navigation.navigate("DetailsScreen", {
-      receiptId: item.imgUrl,
+      receiptId: item.id,
       receiptName: item.title,
-      receiptImage: item.imgUrl,
+      receiptImage: item.image,
     });
   };
 
   return (
     <Pressable onPress={() => handleOpenReceipt()}>
-      <View key={item.imgUrl} style={{ marginTop: 12, flex: 1 }}>
+      <View key={item.id} style={{ marginTop: 12, flex: 1 }}>
         <View
           style={{
             height: randomBool ? 280 : 150,
@@ -49,7 +49,7 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
               margin: 0.5,
             }}
             resizeMode="cover"
-            source={item.imgUrl}
+            source={item.image}
           />
 
           {addBtn ? (
@@ -101,7 +101,7 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
               fontWeight: "bold",
             }}
           >
-            {item.desc || `By Oren Diligan`}
+            Points: {item.aggregateLikes}
           </Text>
         </View>
       </View>

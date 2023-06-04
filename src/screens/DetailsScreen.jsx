@@ -34,7 +34,7 @@ export const DetailsScreen = ({ route, navigation }) => {
           resizeMode="cover"
         />
       </View>
-      <Taste />
+      <Taste tasteId={receiptId} />
       <ReceiptDetails />
       <SimilarReceipts navigation={navigation} />
     </ScrollView>

@@ -1,38 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import { SECONDARY_TEXT_COLOR } from "../utils/colors";
+import { getTasteById } from "../api/Recipes";
 
-export const Taste = () => {
+export const Taste = (tasteId) => {
+  const [tasteData, setTasteData] = useState([]);
+
+  useEffect(() => {
+    const fetchTasteData = async () => {
+      const data = await getTasteById(tasteId);
+      setTasteData(data);
+      console.log(data);
+    };
+    fetchTasteData();
+  }, []);
+
   const tasteCtg = [
     {
       name: "Dulce",
       img: "sweet",
-      points: "2.3",
+      points: tasteData.sweetness,
     },
     {
       name: "Salado",
       img: "salt",
-      points: "3.4",
+      points: tasteData.saltiness,
     },
     {
       name: "Amargo",
       img: "sour",
-      points: "4.3",
+      points: tasteData.bitterness,
     },
     {
       name: "Sabroso",
       img: "tasty",
-      points: "1.2",
+      points: tasteData.savoriness,
     },
     {
       name: "Gordura",
       img: "fat",
-      points: "4.5",
+      points: tasteData.fattiness,
     },
     {
       name: "Picante",
       img: "spicy",
-      points: "1.2",
+      points: tasteData.spiciness,
     },
   ];
 

@@ -1,8 +1,8 @@
-export const BREAKFAST_CTG = "Breakfast";
-export const LUNCH_CTG = "Lunch";
-export const DINNER_CTG = "Dinner";
-export const DESSERT_CTG = "Dessert";
-export const VEGGIES_CTG = "Vegetarian";
+export const BREAKFAST_CTG = "breakfast";
+export const LUNCH_CTG = "lunch";
+export const DINNER_CTG = "dinner";
+export const DESSERT_CTG = "dessert";
+export const VEGGIES_CTG = "vegetarian";
 
 export const CATEGORIES = [
   BREAKFAST_CTG,

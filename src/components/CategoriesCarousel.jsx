@@ -11,11 +11,11 @@ import {
 } from "../utils/constants";
 import { PRIMARY_COLOR, PRIMARY_TEXT_COLOR, SOFT_WHITE } from "../utils/colors";
 
-export const CategoriesCarousel = ({ categorie, setCategorie }) => {
+export const CategoriesCarousel = ({ category, setCategory }) => {
   const ref = useRef(null);
 
-  const handleClickCategorie = (value) => {
-    setCategorie(value);
+  const handleClickCategory = (value) => {
+    setCategory(value);
   };
 
   const categories = {
@@ -51,11 +51,11 @@ export const CategoriesCarousel = ({ categorie, setCategorie }) => {
 
   const renderItem = ({ item }) => {
     return (
-      <Pressable onPress={() => handleClickCategorie(item.value)}>
+      <Pressable onPress={() => handleClickCategory(item.value)}>
         <View
           style={{
             backgroundColor:
-              item.value === categorie ? PRIMARY_COLOR : SOFT_WHITE,
+              item.value === category ? PRIMARY_COLOR : SOFT_WHITE,
             borderRadius: 10,
             flex: 1,
             alignItems: "center",
@@ -75,7 +75,7 @@ export const CategoriesCarousel = ({ categorie, setCategorie }) => {
               fontSize: 15,
               fontFamily: "poppins-regular",
               fontWeight: "bold",
-              color: item.value === categorie ? "#FFF" : PRIMARY_TEXT_COLOR,
+              color: item.value === category ? "#FFF" : PRIMARY_TEXT_COLOR,
             }}
           >
             {item.text}
