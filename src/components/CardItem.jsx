@@ -25,7 +25,7 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
 
   const handleOpenReceipt = () => {
     navigation.navigate("DetailsScreen", {
-      receiptId: item.id,
+      recipeId: item.id,
       receiptName: item.title,
       receiptImage: item.image,
     });

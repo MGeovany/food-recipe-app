@@ -2,13 +2,13 @@ import React from "react";
 import { View, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { Taste } from "../components/Taste";
-import { ReceiptDetails } from "./ReceiptDetails";
+import { RecipeDetails } from "./RecipeDetails";
 import { SimilarReceipts } from "../components/SimilarReceipts";
 import { BackButton } from "../components/BackButton";
 import { SaveButton } from "../components/SaveButton";
 
 export const DetailsScreen = ({ route, navigation }) => {
-  const { receiptId, receiptImage, receiptName } = route.params;
+  const { recipeId, receiptImage, receiptName } = route.params;
 
   return (
     <ScrollView
@@ -34,8 +34,8 @@ export const DetailsScreen = ({ route, navigation }) => {
           resizeMode="cover"
         />
       </View>
-      <Taste tasteId={receiptId} />
-      <ReceiptDetails />
+      <Taste tasteId={recipeId} />
+      <RecipeDetails recipeId={recipeId} />
       <SimilarReceipts navigation={navigation} />
     </ScrollView>
   );

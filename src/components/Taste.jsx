@@ -12,7 +12,7 @@ export const Taste = ({ tasteId }) => {
       setTasteData(data);
     };
     fetchTasteData();
-  }, []);
+  }, [tasteId]);
 
   const tasteCtg = [
     {

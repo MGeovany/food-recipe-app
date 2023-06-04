@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,8 +8,20 @@ import {
   StyleSheet,
 } from "react-native";
 import { PRIMARY_TEXT_COLOR, SECONDARY_TEXT_COLOR } from "../utils/colors";
+import { getRecipeInfo } from "../api/Recipes";
 
-export const ReceiptDetails = () => {
+export const RecipeDetails = ({ recipeId }) => {
+  const [recipeDetails, setRecipeDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchRecipeDetails = async () => {
+      const data = await getRecipeInfo(recipeId);
+      console.log(data);
+
+      setRecipeDetails(data);
+    };
+    fetchRecipeDetails();
+  }, [recipeId]);
   return (
     <View
       style={{
@@ -26,7 +38,7 @@ export const ReceiptDetails = () => {
             alignItems: "center",
           }}
         >
-          <Text style={styles.mainTitle}>Salmon Sushi</Text>
+          <Text style={styles.mainTitle}>{recipeDetails?.title}</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Image
               style={{
@@ -36,48 +48,43 @@ export const ReceiptDetails = () => {
               }}
               source={require("../assets/icons/timerGray.png")}
             />
-            <Text style={styles.contentText}>48 mins</Text>
+            <Text style={styles.contentText}>
+              {recipeDetails?.readyInMinutes} mins
+            </Text>
           </View>
         </View>
         <Text style={styles.contentText}>
-          El nigiri sushi son pequeñas pelotas ovaladas de arroz, cubiertas con
-          un trozo de pescado y un poco de wasabi.
+          {recipeDetails?.summary?.replace(/<[^>]+>/g, "")}
         </Text>
       </View>
       <View style={styles.blockP}>
         <Text style={styles.secondaryTitle}>Ingredientes</Text>
         <FlatList
-          data={[
-            { key: "Arroz" },
-            { key: "Carne" },
-            { key: "Pescado" },
-            { key: "Salmon" },
-            { key: "Relleno" },
-            { key: "Condimentos" },
-          ]}
-          renderItem={({ item }) => (
-            <Text style={styles.contentText}>{item.key}</Text>
+          data={recipeDetails?.extendedIngredients}
+          renderItem={({ item, index }) => (
+            <Text key={index} style={styles.contentText}>
+              {"\u2022"} {item.original?.replace(/<[^>]+>/g, "")}
+            </Text>
           )}
         />
       </View>
       <View style={styles.blockP}>
         <Text style={styles.secondaryTitle}>Instrucciones</Text>
 
-        <Text style={styles.contentText}>
-          No es recomendable ahogar el sushi en la soya; esta salsa tiene muchos
-          toques de sal y es bastante fuerte por lo que ocultará el sabor del
-          pescado y del arroz. Si el chef está cerca y puede observar la comida,
-          será mejor evitarlo porque esto podría parecer un intento por ocultar
-          el sabor y ser ofensivo a la labor culinaria del maestro del sushi.
-        </Text>
+        <Text style={styles.contentText}>{recipeDetails?.instructions}</Text>
       </View>
       <View style={styles.blockP}>
         <Text style={styles.secondaryTitle}>Paso a Paso</Text>
         <Text style={styles.contentText}>
-          El dilema de los palillos Si se trata de una bandeja compartida, lo
-          correcto es darle la vuelta a los palillos a la hora de servirse
-          alguna pieza; esto evitará que la parte usada toque alguna de las
-          demás piezas.
+          <FlatList
+            data={recipeDetails?.analyzedInstructions?.[0]?.steps}
+            renderItem={({ item, index }) => (
+              <Text key={index} style={styles.contentText}>
+                <Text style={{ fontWeight: 900 }}> Paso {item.number}:</Text>
+                {item.step}
+              </Text>
+            )}
+          />
         </Text>
       </View>
     </View>

@@ -41,3 +41,21 @@ export const getTasteById = async (tasteId) => {
     console.error(error);
   }
 };
+
+export const getRecipeInfo = async (recipeId) => {
+  const options = {
+    method: "GET",
+    url: `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${recipeId}/information`,
+    headers: {
+      "X-RapidAPI-Key": API_KEY,
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await axios.request(options);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
