@@ -63,8 +63,8 @@ export const getRecipeInfo = async (recipeId) => {
 export const getRecipesInfo = async (recipeIds) => {
   const recipesInfo = [];
 
-  for (const recipeId of recipeIds) {
-    const recipeInfo = await getRecipeInfo(recipeId.id);
+  for (const item of recipeIds) {
+    const recipeInfo = await getRecipeInfo(item.id);
     recipesInfo.push(recipeInfo);
   }
 

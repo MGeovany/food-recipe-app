@@ -26,7 +26,6 @@ export const SimilarReceipts = ({ navigation, recipeId }) => {
       const recipesInfo = await getRecipesInfo(data);
 
       setSimilarRecipes(recipesInfo);
-      console.log(recipesInfo);
     };
 
     fetchSimilarRecipes();
