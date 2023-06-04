@@ -36,7 +36,7 @@ export const DetailsScreen = ({ route, navigation }) => {
       </View>
       <Taste tasteId={recipeId} />
       <RecipeDetails recipeId={recipeId} />
-      <SimilarReceipts navigation={navigation} />
+      <SimilarReceipts navigation={navigation} recipeId={recipeId} />
     </ScrollView>
   );
 };

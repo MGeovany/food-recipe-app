@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Carousel from "react-native-reanimated-carousel";
 import {
   BREAKFAST_CTG,
@@ -10,9 +10,27 @@ import {
 import { Pressable, View, Text, StyleSheet } from "react-native";
 import { SECONDARY_TEXT_COLOR } from "../utils/colors";
 import { CardItem } from "./CardItem";
+import {
+  getRecipeInfo,
+  getRecipesInfo,
+  getSimilarRecipes,
+} from "../api/Recipes";
 
-export const SimilarReceipts = ({ navigation }) => {
+export const SimilarReceipts = ({ navigation, recipeId }) => {
   const ref = useRef(null);
+  const [similarRecipes, setSimilarRecipes] = useState([]);
+
+  useEffect(() => {
+    const fetchSimilarRecipes = async () => {
+      const data = await getSimilarRecipes(recipeId);
+      const recipesInfo = await getRecipesInfo(data);
+
+      setSimilarRecipes(recipesInfo);
+      console.log(recipesInfo);
+    };
+
+    fetchSimilarRecipes();
+  }, [recipeId]);
 
   const images = [
     {
@@ -77,7 +95,7 @@ export const SimilarReceipts = ({ navigation }) => {
         width={164}
         height={520 / 2}
         autoPlay={true}
-        data={images}
+        data={similarRecipes}
         renderItem={({ item }) => (
           <CardItem
             item={item}

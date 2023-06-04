@@ -16,8 +16,6 @@ export const RecipeDetails = ({ recipeId }) => {
   useEffect(() => {
     const fetchRecipeDetails = async () => {
       const data = await getRecipeInfo(recipeId);
-      console.log(data);
-
       setRecipeDetails(data);
     };
     fetchRecipeDetails();
@@ -71,7 +69,9 @@ export const RecipeDetails = ({ recipeId }) => {
       <View style={styles.blockP}>
         <Text style={styles.secondaryTitle}>Instrucciones</Text>
 
-        <Text style={styles.contentText}>{recipeDetails?.instructions}</Text>
+        <Text style={styles.contentText}>
+          {recipeDetails?.instructions?.replace(/<[^>]+>/g, "")}
+        </Text>
       </View>
       <View style={styles.blockP}>
         <Text style={styles.secondaryTitle}>Paso a Paso</Text>
@@ -80,7 +80,7 @@ export const RecipeDetails = ({ recipeId }) => {
             data={recipeDetails?.analyzedInstructions?.[0]?.steps}
             renderItem={({ item, index }) => (
               <Text key={index} style={styles.contentText}>
-                <Text style={{ fontWeight: 900 }}> Paso {item.number}:</Text>
+                <Text style={{ fontWeight: 900 }}> Paso {item.number}: </Text>
                 {item.step}
               </Text>
             )}
