@@ -37,7 +37,7 @@ export const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     const fetchRandomRecipes = async () => {
       const data = await getRandomRecipe(10, category);
-      setDataList(data.recipes);
+      setDataList(data?.recipes);
     };
     fetchRandomRecipes();
   }, [category]);
