@@ -41,3 +41,21 @@ exports.create = async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 };
+
+exports.delete = async (req, res) => {
+  const userId = req.query.userId;
+  const recipeId = req.params.recipeId;
+
+  try {
+    const query = `
+      DELETE FROM favorites
+      WHERE user_id = $1 AND recipe_id = $2
+    `;
+
+    await pool.query(query, [userId, recipeId]);
+    res.status(200).json({ message: "Recipe removed from favorites" });
+  } catch (err) {
+    console.error("Error deleting saved recipe:", err);
+    res.status(500).json({ error: "An error occurred" });
+  }
+};
