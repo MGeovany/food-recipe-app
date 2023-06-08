@@ -13,7 +13,7 @@ import {
   LUNCH_CTG,
   VEGGIES_CTG,
 } from "../utils/constants";
-import { getRandomRecipe, searchRecipe } from "../api/Recipes";
+import { getRandomRecipe, searchRecipe } from "../api/getRecipes";
 import { SearchList } from "../components/SearchList";
 
 export const HomeScreen = ({ navigation }) => {

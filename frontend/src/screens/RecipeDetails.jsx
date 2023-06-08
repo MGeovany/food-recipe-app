@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { PRIMARY_TEXT_COLOR, SECONDARY_TEXT_COLOR } from "../utils/colors";
-import { getRecipeInfo } from "../api/Recipes";
+import { getRecipeInfo } from "../api/getRecipes";
 
 export const RecipeDetails = ({ recipeId }) => {
   const [recipeDetails, setRecipeDetails] = useState(null);

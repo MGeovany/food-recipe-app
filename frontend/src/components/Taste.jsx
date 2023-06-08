@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, Pressable, StyleSheet } from "react-native";
 import { SECONDARY_TEXT_COLOR } from "../utils/colors";
-import { getTasteById } from "../api/Recipes";
+import { getTasteById } from "../api/getRecipes";
 
 export const Taste = ({ tasteId }) => {
   const [tasteData, setTasteData] = useState([]);

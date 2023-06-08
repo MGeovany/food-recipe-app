@@ -14,7 +14,7 @@ import {
   getRecipeInfo,
   getRecipesInfo,
   getSimilarRecipes,
-} from "../api/Recipes";
+} from "../api/getRecipes";
 
 export const SimilarReceipts = ({ navigation, recipeId }) => {
   const ref = useRef(null);

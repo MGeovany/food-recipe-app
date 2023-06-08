@@ -3,18 +3,19 @@ import { ScrollView, Text, View } from "react-native";
 import { styles } from "../styles";
 import { SavedList } from "../components/SavedList";
 import { RecommendationList } from "../components/RecommendationList";
-import { getRandomRecipe } from "../api/Recipes";
+import { getRandomRecipe } from "../api/getRecipes";
+import { getSavedRecipes } from "../api/saveData";
 
 export const SavedScreen = ({ navigation }) => {
   const [dataList, setDataList] = useState([]);
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
-    const fetchRandomRecipes = async () => {
-      const data = await getRandomRecipe(10, category);
-      setDataList(data.recipes);
+    const fetchSavedRecipes = async () => {
+      const response = await getSavedRecipes(1);
+      setDataList(response.data);
     };
-    fetchRandomRecipes();
+    fetchSavedRecipes();
   }, [category]);
 
   return (

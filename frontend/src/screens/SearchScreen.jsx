@@ -4,7 +4,7 @@ import { styles } from "../styles";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Searchbar } from "react-native-paper";
 import { SearchList } from "../components/SearchList";
-import { searchRecipe } from "../api/Recipes";
+import { searchRecipe } from "../api/getRecipes";
 import { RecommendationList } from "../components/RecommendationList";
 
 export const SearchScreen = ({ navigation }) => {
