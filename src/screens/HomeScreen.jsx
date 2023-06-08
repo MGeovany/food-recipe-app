@@ -13,18 +13,14 @@ import {
   LUNCH_CTG,
   VEGGIES_CTG,
 } from "../utils/constants";
-import { getRandomRecipe } from "../api/Recipes";
+import { getRandomRecipe, searchRecipe } from "../api/Recipes";
+import { SearchList } from "../components/SearchList";
 
 export const HomeScreen = ({ navigation }) => {
   const { userInfo } = useAppContext();
-  const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState(null);
   const [dataList, setDataList] = useState([]);
-
-  const onChangeSearch = (query) => {
-    setSearchQuery(query);
-    console.log(searchQuery);
-  };
+  const [searchQuery, setSearchQuery] = useState("");
 
   const categoryTitles = {
     [BREAKFAST_CTG]: "Desayuno",
@@ -34,12 +30,31 @@ export const HomeScreen = ({ navigation }) => {
     [VEGGIES_CTG]: "Veggies",
   };
 
+  const onChangeSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      const data = await searchRecipe(searchQuery);
+      setDataList(data.results);
+    };
+    const timeoutId = setTimeout(() => {
+      fetchRecipe();
+    }, 1000);
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
   useEffect(() => {
     const fetchRandomRecipes = async () => {
       const data = await getRandomRecipe(10, category);
       setDataList(data?.recipes);
     };
     fetchRandomRecipes();
+  }, [category]);
+
+  useEffect(() => {
+    setSearchQuery("");
   }, [category]);
 
   const categoryTitle = categoryTitles[category];
@@ -91,22 +106,33 @@ export const HomeScreen = ({ navigation }) => {
         <Text style={styles.mainTitle}>Categories</Text>
         <CategoriesCarousel setCategory={setCategory} category={category} />
 
-        {category === null ? (
+        {category === null && searchQuery === "" ? (
           <View>
             <Text style={styles.mainTitle}>Recomendacion del dia</Text>
           </View>
-        ) : (
+        ) : searchQuery !== "" ? (
           <View>
-            <Text style={styles.mainTitle}>
-              Recetas {categoryTitle} populares
-            </Text>
+            <Text style={styles.mainTitle}>Resultados de busqueda</Text>
           </View>
+        ) : (
+          category !== null && (
+            <View>
+              <Text style={styles.mainTitle}>
+                Recetas {categoryTitle} populares
+              </Text>
+            </View>
+          )
         )}
-        <RecommendationList
-          category={category}
-          navigation={navigation}
-          recipes={dataList}
-        />
+
+        {searchQuery !== "" ? (
+          <RecommendationList
+            category={category}
+            navigation={navigation}
+            recipes={dataList}
+          />
+        ) : (
+          <SearchList navigation={navigation} data={dataList} />
+        )}
       </View>
     </ScrollView>
   );

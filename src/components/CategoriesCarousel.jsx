@@ -20,7 +20,7 @@ export const CategoriesCarousel = ({ category, setCategory }) => {
 
   const categories = {
     activeIndex: 0,
-    categorieItems: [
+    categoryItems: [
       {
         icon: "🥞",
         text: "Desayunos",
@@ -93,7 +93,7 @@ export const CategoriesCarousel = ({ category, setCategory }) => {
       width={170}
       height={220 / 2}
       autoPlay={false}
-      data={categories.categorieItems}
+      data={categories.categoryItems}
       renderItem={renderItem}
     />
   );

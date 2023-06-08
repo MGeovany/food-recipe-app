@@ -1,12 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import MasonryList from "@react-native-seoul/masonry-list";
-import { View, Text, Image } from "react-native";
-import { styles } from "../styles";
+import { View } from "react-native";
 import { CardItem } from "./CardItem";
 
 export const SearchList = ({ navigation, data }) => {
-  const [isLoadingNext, setIsLoadingNext] = useState(false);
-
   return (
     <View>
       <MasonryList

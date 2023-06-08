@@ -25,15 +25,15 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
 
   const handleOpenReceipt = () => {
     navigation.navigate("DetailsScreen", {
-      recipeId: item.id,
-      receiptName: item.title,
-      receiptImage: item.image,
+      recipeId: item?.id,
+      receiptName: item?.title,
+      receiptImage: item?.image,
     });
   };
 
   return (
     <Pressable onPress={() => handleOpenReceipt()}>
-      <View key={item.id} style={{ marginTop: 12, flex: 1 }}>
+      <View key={item?.id} style={{ marginTop: 12, flex: 1 }}>
         <View
           style={{
             height: randomBool ? 280 : 150,
@@ -49,7 +49,7 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
               margin: 0.5,
             }}
             resizeMode="cover"
-            source={item.image}
+            source={item?.image}
           />
 
           {addBtn ? (
@@ -93,7 +93,7 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
             marginBottom: "1rem",
           }}
         >
-          <Text style={styles.descTitle}>{item.title}</Text>
+          <Text style={styles.descTitle}>{item?.title}</Text>
           <Text
             style={{
               fontFamily: "poppins-regular",
@@ -101,7 +101,7 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
               fontWeight: "bold",
             }}
           >
-            Points: {item.aggregateLikes}
+            Points: {item?.aggregateLikes}
           </Text>
         </View>
       </View>
