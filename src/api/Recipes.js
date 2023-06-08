@@ -88,3 +88,24 @@ export const getSimilarRecipes = async (recipeId) => {
     console.error(error);
   }
 };
+
+export const searchRecipe = async (query) => {
+  const options = {
+    method: "GET",
+    url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch",
+    params: {
+      query,
+    },
+    headers: {
+      "X-RapidAPI-Key": API_KEY,
+      "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await axios.request(options);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

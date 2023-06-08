@@ -4,20 +4,22 @@ import { styles } from "../styles";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Searchbar } from "react-native-paper";
 import { SearchList } from "../components/SearchList";
-import { getRandomRecipe } from "../api/Recipes";
+import { searchRecipe } from "../api/Recipes";
 import { RecommendationList } from "../components/RecommendationList";
 
 export const SearchScreen = ({ navigation }) => {
   const [dataList, setDataList] = useState([]);
-  const [category, setCategory] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const onChangeSearch = (query) => setSearchQuery(query);
 
   useEffect(() => {
-    const fetchRandomRecipes = async () => {
-      const data = await getRandomRecipe(10, category);
-      setDataList(data.recipes);
+    const fetchRecipe = async () => {
+      const data = await searchRecipe(searchQuery);
+      setDataList(data.results);
     };
-    fetchRandomRecipes();
-  }, [category]);
+    fetchRecipe();
+  }, [searchQuery]);
 
   return (
     <ScrollView>
@@ -47,15 +49,12 @@ export const SearchScreen = ({ navigation }) => {
             }}
             inputStyle={{ fontFamily: "poppins-regular", color: "#BBBABD" }}
             placeholder="Buscar"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
           />
         </View>
         <View>
-          {/*  <SearchList navigation={navigation} data={dataList} /> */}
-          <RecommendationList
-            category={category}
-            navigation={navigation}
-            recipes={dataList}
-          />
+          <SearchList navigation={navigation} data={dataList} />
         </View>
       </View>
     </ScrollView>
