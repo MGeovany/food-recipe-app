@@ -30,6 +30,7 @@ export const SavedList = ({ navigation, recipeList }) => {
             navigation={navigation}
             addBtn={true}
             randomHeight={true}
+            saved={true}
           />
         )}
       />

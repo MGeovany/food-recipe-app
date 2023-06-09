@@ -3,7 +3,7 @@ import { styles } from "../styles";
 import { View, Text, Image, Pressable } from "react-native";
 import { addNewRecipe } from "../api/poll";
 
-export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
+export const CardItem = ({ item, addBtn, navigation, randomHeight, saved }) => {
   const [addedState, setAddedState] = useState(false);
   const [removedState, setRemovedState] = useState(false);
 
@@ -32,6 +32,7 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
       recipeId: item?.id,
       receiptName: item?.title,
       receiptImage: item?.image,
+      receiptSaved: saved ?? false,
     });
   };
 

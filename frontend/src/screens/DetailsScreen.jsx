@@ -6,9 +6,10 @@ import { RecipeDetails } from "./RecipeDetails";
 import { SimilarReceipts } from "../components/SimilarReceipts";
 import { BackButton } from "../components/BackButton";
 import { SaveButton } from "../components/SaveButton";
+import { UnSaveButton } from "../components/UnsaveButton";
 
 export const DetailsScreen = ({ route, navigation }) => {
-  const { recipeId, receiptImage, receiptName } = route.params;
+  const { recipeId, receiptImage, receiptSaved } = route.params;
 
   return (
     <ScrollView
@@ -23,7 +24,11 @@ export const DetailsScreen = ({ route, navigation }) => {
         }}
       >
         <BackButton navigation={navigation} />
-        <SaveButton recipeId={recipeId} />
+        {!receiptSaved ? (
+          <SaveButton recipeId={recipeId} />
+        ) : (
+          <UnSaveButton recipeId={recipeId} />
+        )}
         <Image
           source={receiptImage}
           style={{
