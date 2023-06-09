@@ -1,7 +1,15 @@
 import React from "react";
 import { Image, Pressable } from "react-native";
+import { saveRecipe } from "../api/saveData";
 
-export const SaveButton = () => {
+export const SaveButton = ({ recipeId }) => {
+  const handleSaveRecipe = async () => {
+    const response = await saveRecipe("1", recipeId);
+    console.log(
+      "Recipe successfully added to favorites list",
+      response?.status
+    );
+  };
   return (
     <Pressable
       style={{
@@ -16,6 +24,7 @@ export const SaveButton = () => {
         justifyContent: "center",
         alignItems: "center",
       }}
+      onPress={handleSaveRecipe}
     >
       <Image
         source={require("../assets/icons/love.png")}

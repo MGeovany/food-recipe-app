@@ -13,7 +13,14 @@ export const SavedScreen = ({ navigation }) => {
   useEffect(() => {
     const fetchSavedRecipes = async () => {
       const response = await getSavedRecipes(1);
-      setDataList(response.data);
+      const inputArray = response.data;
+      const transformedArray = inputArray.map((obj) => {
+        return {
+          id: obj.recipe_id,
+        };
+      });
+
+      setDataList(transformedArray);
     };
     fetchSavedRecipes();
   }, [category]);
@@ -41,12 +48,7 @@ export const SavedScreen = ({ navigation }) => {
           </Text>
           <Text style={styles.pageTitle}>para mas tarde</Text>
         </View>
-        {/*   <SavedList navigation={navigation} /> */}
-        <RecommendationList
-          category={category}
-          navigation={navigation}
-          recipes={dataList}
-        />
+        <SavedList navigation={navigation} recipeList={dataList} />
       </View>
     </ScrollView>
   );

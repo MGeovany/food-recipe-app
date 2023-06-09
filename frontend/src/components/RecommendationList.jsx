@@ -6,6 +6,8 @@ import { CardItem } from "./CardItem";
 export const RecommendationList = ({ category, navigation, recipes }) => {
   const [isLoadingNext, setIsLoadingNext] = useState(false);
 
+  console.log(recipes);
+
   return (
     <View>
       <MasonryList

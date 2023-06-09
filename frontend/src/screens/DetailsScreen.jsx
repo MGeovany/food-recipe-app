@@ -23,7 +23,7 @@ export const DetailsScreen = ({ route, navigation }) => {
         }}
       >
         <BackButton navigation={navigation} />
-        <SaveButton />
+        <SaveButton recipeId={recipeId} />
         <Image
           source={receiptImage}
           style={{
