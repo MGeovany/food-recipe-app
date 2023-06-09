@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { styles } from "../styles";
 import { View, Text, Image, Pressable } from "react-native";
-import { addNewRecipe, deleteRecipe } from "../api/poll";
+import { addLikeToRecipe, addNewRecipe, deleteRecipe } from "../api/poll";
 
 export const CardItem = ({
   item,
@@ -10,9 +10,11 @@ export const CardItem = ({
   randomHeight,
   saved,
   addedToPoll,
+  likes,
 }) => {
   const [addedState, setAddedState] = useState(false);
   const [removedState, setRemovedState] = useState(false);
+  const [recipeLikes, setRecipeLikes] = useState(item?.vote_count);
 
   const randomBool = randomHeight
     ? useMemo(() => Math.random() < 0.5, [])
@@ -44,6 +46,19 @@ export const CardItem = ({
       receiptImage: item?.image,
       receiptSaved: saved ?? false,
     });
+  };
+
+  const handleLike = async (recipeId) => {
+    try {
+      const response = await addLikeToRecipe(recipeId);
+      if (response.status === 200) {
+        console.log("Recipe liked successfully");
+      }
+
+      setRecipeLikes(response?.data?.vote_count);
+    } catch (error) {
+      console.error("Error liking recipe:", error);
+    }
   };
 
   return (
@@ -109,15 +124,38 @@ export const CardItem = ({
           }}
         >
           <Text style={styles.descTitle}>{item?.title}</Text>
-          <Text
-            style={{
-              fontFamily: "poppins-regular",
-              color: "#BBBABD",
-              fontWeight: "bold",
-            }}
-          >
-            Points: {item?.aggregateLikes}
-          </Text>
+
+          {likes ? (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontFamily: "poppins-regular",
+                  color: "#BBBABD",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  paddingTop: "0.6rem",
+                }}
+              >
+                {recipeLikes}
+              </Text>
+
+              <Pressable onPress={() => handleLike(item?.id)} style={{}}>
+                <Image
+                  source={require(`../assets/icons/like.png`)}
+                  style={{
+                    height: 32,
+                    width: 32,
+                  }}
+                />
+              </Pressable>
+            </View>
+          ) : null}
         </View>
       </View>
     </Pressable>

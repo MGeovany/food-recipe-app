@@ -65,6 +65,7 @@ export const getRecipesInfo = async (recipeIds) => {
 
   for (const item of recipeIds) {
     const recipeInfo = await getRecipeInfo(item.id);
+    recipeInfo.vote_count = item.vote_count; // Add the vote_count property to the recipeInfo object
     recipesInfo.push(recipeInfo);
   }
 

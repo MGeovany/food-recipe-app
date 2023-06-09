@@ -5,7 +5,7 @@ import { CardItem } from "./CardItem";
 import { getRecipesInfo } from "../api/getRecipes";
 import Loading from "./Loading";
 
-export const SavedList = ({ navigation, recipeList, addedToPoll }) => {
+export const SavedList = ({ navigation, recipeList, addedToPoll, likes }) => {
   const [dataList, setDataList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,6 +15,7 @@ export const SavedList = ({ navigation, recipeList, addedToPoll }) => {
 
       try {
         const recipesInfo = await getRecipesInfo(recipeList);
+        console.log(recipesInfo);
         setDataList(recipesInfo);
       } catch (error) {
         console.error("Error fetching saved recipes:", error);
@@ -43,6 +44,7 @@ export const SavedList = ({ navigation, recipeList, addedToPoll }) => {
               randomHeight={true}
               saved={true}
               addedToPoll={addedToPoll ?? false}
+              likes={likes ?? false}
             />
           )}
         />

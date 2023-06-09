@@ -18,6 +18,7 @@ export const Main = ({ navigation }) => {
         const transformedArray = inputArray.map((obj) => {
           return {
             id: obj.recipe_id,
+            vote_count: obj.vote_count,
           };
         });
 
@@ -110,11 +111,41 @@ export const Main = ({ navigation }) => {
             </Pressable>
           </View>
         ) : (
-          <SavedList
-            navigation={navigation}
-            recipeList={dataList}
-            addedToPoll={true}
-          />
+          <View>
+            <Pressable>
+              <View
+                style={{
+                  backgroundColor: "#5dbd21",
+                  border: "1px solid #CDDAE3",
+                  borderRadius: "26px",
+
+                  width: "100%",
+                  height: "47px",
+
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "row",
+                }}
+              >
+                <Text
+                  style={{
+                    fontFamily: "poppins-regular",
+                    fontWeight: "bold",
+                    paddingLeft: "15px",
+                    color: "#fff",
+                  }}
+                >
+                  Terminar encuesta
+                </Text>
+              </View>
+            </Pressable>
+            <SavedList
+              navigation={navigation}
+              recipeList={dataList}
+              addedToPoll={true}
+              likes={true}
+            />
+          </View>
         )}
       </View>
     </ScrollView>

@@ -49,3 +49,18 @@ export const deleteRecipe = async (userId, recipeId) => {
     console.error(error);
   }
 };
+
+export const addLikeToRecipe = async (recipeId) => {
+  const options = {
+    method: "POST",
+    url: "http://localhost:4000/api/v1/likes",
+    headers: { "Content-Type": "application/json" },
+    data: { recipeId },
+  };
+  try {
+    const response = await axios.request(options);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
