@@ -12,6 +12,7 @@ export const MainStackScreen = () => {
         headerShown: false,
       }}
     >
+      <MainStack.Screen name="MainScreen" component={Main} />
       <MainStack.Screen
         name="WinnerScreen"
         component={WinnerScreen}
@@ -19,7 +20,6 @@ export const MainStackScreen = () => {
           tabBarStyle: { display: "none" },
         }}
       />
-      <MainStack.Screen name="MainScreen" component={Main} />
     </MainStack.Navigator>
   );
 };

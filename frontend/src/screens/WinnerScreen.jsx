@@ -1,9 +1,21 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, Image, Pressable } from "react-native";
 import { PRIMARY_COLOR } from "../utils/colors";
+import { getRecipeInfo } from "../api/getRecipes";
+import { styles } from "../styles";
+import { CardItem } from "../components/CardItem";
 
 export const WinnerScreen = ({ route, navigation }) => {
-  // const { winner, vote_count } = route.params;
+  const { winner, vote_count, recipeImg } = route.params;
+  const [recipeInfo, setRecipeInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchRecipeInfo = async () => {
+      const response = await getRecipeInfo(winner);
+      setRecipeInfo(response);
+    };
+    fetchRecipeInfo();
+  }, []);
 
   return (
     <View
@@ -50,13 +62,15 @@ export const WinnerScreen = ({ route, navigation }) => {
       <View>
         <Text
           style={{
-            fontSize: "50px",
+            fontSize: "60px",
             marginTop: "1rem",
           }}
         >
           🎉
         </Text>
       </View>
+
+      <CardItem item={recipeInfo} navigation={navigation} winner={true} />
     </View>
   );
 };

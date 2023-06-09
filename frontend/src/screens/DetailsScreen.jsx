@@ -30,7 +30,7 @@ export const DetailsScreen = ({ route, navigation }) => {
           <UnSaveButton navigation={navigation} recipeId={recipeId} />
         )}
         <Image
-          source={receiptImage}
+          source={receiptImage ?? null}
           style={{
             height: "400px",
             width: "100%",

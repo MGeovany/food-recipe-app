@@ -10,6 +10,7 @@ export const CardItem = ({
   randomHeight,
   saved,
   addedToPoll,
+  winner,
   likes,
 }) => {
   const [addedState, setAddedState] = useState(false);
@@ -42,8 +43,7 @@ export const CardItem = ({
   const handleOpenReceipt = () => {
     navigation.navigate("DetailsScreen", {
       recipeId: item?.id,
-      receiptName: item?.title,
-      receiptImage: item?.image,
+      receiptImage: item?.image ?? null,
       receiptSaved: saved ?? false,
     });
   };
@@ -82,7 +82,7 @@ export const CardItem = ({
             source={item?.image}
           />
 
-          {!addedToPoll ? (
+          {!addedToPoll && !winner ? (
             <Pressable onPress={() => handleAddReceipt()}>
               <Image
                 source={require(`../assets/icons/${
@@ -98,7 +98,7 @@ export const CardItem = ({
                 }}
               />
             </Pressable>
-          ) : (
+          ) : addedToPoll && winner ? (
             <Pressable onPress={handleRemoveReceipt}>
               <Image
                 source={require(`../assets/icons/${
@@ -114,7 +114,7 @@ export const CardItem = ({
                 }}
               />
             </Pressable>
-          )}
+          ) : null}
         </View>
 
         <View
