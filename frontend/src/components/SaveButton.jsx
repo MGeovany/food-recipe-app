@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Pressable } from "react-native";
-import { saveRecipe } from "../api/saveData";
+import { saveRecipe } from "../api/favorites";
 
 export const SaveButton = ({ recipeId }) => {
   const handleSaveRecipe = async () => {

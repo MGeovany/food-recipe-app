@@ -25,9 +25,9 @@ export const DetailsScreen = ({ route, navigation }) => {
       >
         <BackButton navigation={navigation} />
         {!receiptSaved ? (
-          <SaveButton recipeId={recipeId} />
+          <SaveButton navigation={navigation} recipeId={recipeId} />
         ) : (
-          <UnSaveButton recipeId={recipeId} />
+          <UnSaveButton navigation={navigation} recipeId={recipeId} />
         )}
         <Image
           source={receiptImage}

@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { styles } from "../styles";
 import { SavedList } from "../components/SavedList";
-import { RecommendationList } from "../components/RecommendationList";
-import { getRandomRecipe } from "../api/getRecipes";
-import { getSavedRecipes } from "../api/saveData";
+import { getSavedRecipes } from "../api/favorites";
 
 export const SavedScreen = ({ navigation }) => {
   const [dataList, setDataList] = useState([]);
-  const [category, setCategory] = useState(null);
 
   useEffect(() => {
     const fetchSavedRecipes = async () => {
@@ -23,7 +20,7 @@ export const SavedScreen = ({ navigation }) => {
       setDataList(transformedArray);
     };
     fetchSavedRecipes();
-  }, [category]);
+  }, [navigation]);
 
   return (
     <ScrollView>

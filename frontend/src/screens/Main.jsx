@@ -19,8 +19,6 @@ export const Main = ({ navigation }) => {
           id: obj.recipe_id,
         };
       });
-      console.log(transformedArray);
-
       setDataList(transformedArray);
     };
     fetchPoll();

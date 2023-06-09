@@ -1,14 +1,16 @@
 import React from "react";
 import { Image, Pressable } from "react-native";
-import { deleteSavedRecipe } from "../api/saveData";
+import { deleteSavedRecipe } from "../api/favorites";
 
-export const UnSaveButton = ({ recipeId }) => {
-  const handleRemoveSaveRecipe = async () => {
+export const UnSaveButton = ({ recipeId, navigation }) => {
+  const handleRemoveSavedRecipe = async () => {
     const response = await deleteSavedRecipe("1", recipeId);
     console.log(
       "Recipe successfully removed from favorites list",
       response?.status
     );
+
+    navigation.navigate("Bookmarks");
   };
   return (
     <Pressable
@@ -24,7 +26,7 @@ export const UnSaveButton = ({ recipeId }) => {
         justifyContent: "center",
         alignItems: "center",
       }}
-      onPress={handleRemoveSaveRecipe}
+      onPress={handleRemoveSavedRecipe}
     >
       <Image
         source={require("../assets/icons/remove.png")}
