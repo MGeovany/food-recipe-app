@@ -6,4 +6,6 @@ router.get("/:houseId", pollController.getAll);
 
 router.post("/", pollController.addRecipe);
 
+router.delete("/", pollController.removeRecipe);
+
 module.exports = router;

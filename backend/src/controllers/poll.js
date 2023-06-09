@@ -48,3 +48,18 @@ exports.getAll = async (req, res) => {
       .json({ error: "An error occurred while retrieving recipes" });
   }
 };
+
+exports.removeRecipe = async (req, res) => {
+  const { recipeId, userId } = req.body;
+
+  try {
+    const query =
+      "DELETE FROM userRecipes WHERE user_id = $1 AND recipe_id = $2";
+    await pool.query(query, [userId, recipeId]);
+
+    res.status(200).json({ message: "Recipe removed successfully" });
+  } catch (err) {
+    console.error("Error removing recipe:", err);
+    res.status(500).json({ error: "An error occurred" });
+  }
+};
