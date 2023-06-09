@@ -14,6 +14,7 @@
 - [ESLint](https://eslint.org/) – Pluggable linter for Next.js and TypeScript
 
 #### Backend
+
 - [PostgreSQL](https://www.postgresql.org/) - PostgreSQL is a powerful, open source object-relational database system.
 - [RapidAPI](https://rapidapi.com/spoonacular/api/recipe-food-nutrition/) - The API Platform is a multi-cloud, customized hub to find, connect to, and share APIs.
 
