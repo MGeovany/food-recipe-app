@@ -19,6 +19,14 @@ export const EditProfileForm = () => {
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <View>
           <TextInput
+            onChangeText={handleChange("age")}
+            onBlur={handleBlur("age")}
+            value={values.age}
+            placeholder="ID de hogar"
+            placeholderTextColor="#B1B6BB"
+            style={styles.inputForm}
+          />
+          <TextInput
             onChangeText={handleChange("name")}
             onBlur={handleBlur("name")}
             value={values.name}
@@ -42,6 +50,7 @@ export const EditProfileForm = () => {
             placeholderTextColor="#B1B6BB"
             style={styles.inputForm}
           />
+
           <Pressable onPress={handleSubmit}>
             <View
               style={{
