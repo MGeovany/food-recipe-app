@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { styles } from "../styles";
 import { View, Text, Image, Pressable } from "react-native";
+import { addNewRecipe } from "../api/poll";
 
 export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
   const [addedState, setAddedState] = useState(false);
@@ -10,7 +11,10 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight }) => {
     ? useMemo(() => Math.random() < 0.5, [])
     : false;
 
-  const handleAddReceipt = () => {
+  const handleAddReceipt = async () => {
+    const response = await addNewRecipe(1, item.id, 1, 1);
+    console.log("Added successfully", response.status);
+
     setAddedState(true);
     setTimeout(() => {
       setAddedState(false);

@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Pressable, ScrollView, Text } from "react-native";
 import { View } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
 
 import { styles } from "../styles";
+import { getAllRecipes } from "../api/poll";
+import { SavedList } from "../components/SavedList";
 
 export const Main = ({ navigation }) => {
+  const [dataList, setDataList] = useState(null);
+
+  useEffect(() => {
+    const fetchPoll = async () => {
+      const response = await getAllRecipes(1);
+
+      const inputArray = response.data;
+      const transformedArray = inputArray.map((obj) => {
+        return {
+          id: obj.recipe_id,
+        };
+      });
+      console.log(transformedArray);
+
+      setDataList(transformedArray);
+    };
+    fetchPoll();
+  }, []);
+
   return (
     <ScrollView
       style={{
@@ -54,35 +74,40 @@ export const Main = ({ navigation }) => {
             HOY?
           </Text>
         </View>
-        <View
-          style={{
-            display: "flex",
-            alignItems: "center",
-            textAlign: "center",
-            marginTop: "10rem",
-          }}
-        >
-          <Text
+
+        {dataList === null ? (
+          <View
             style={{
-              color: "#B1B6BB",
-              fontFamily: "poppins-regular",
-              fontWeight: 900,
-              fontSize: "20px",
+              display: "flex",
+              alignItems: "center",
+              textAlign: "center",
+              marginTop: "10rem",
             }}
           >
-            Inicia sugeriendo recetas con el icono
-          </Text>
-          <Pressable onPress={() => navigation.navigate("Search")}>
-            <Image
+            <Text
               style={{
-                width: "68px",
-                height: "68px",
-                marginTop: "2rem",
+                color: "#B1B6BB",
+                fontFamily: "poppins-regular",
+                fontWeight: 900,
+                fontSize: "20px",
               }}
-              source={require("../assets/icons/addGray.png")}
-            />
-          </Pressable>
-        </View>
+            >
+              Inicia sugeriendo recetas con el icono
+            </Text>
+            <Pressable onPress={() => navigation.navigate("Search")}>
+              <Image
+                style={{
+                  width: "68px",
+                  height: "68px",
+                  marginTop: "2rem",
+                }}
+                source={require("../assets/icons/addGray.png")}
+              />
+            </Pressable>
+          </View>
+        ) : (
+          <SavedList navigation={navigation} recipeList={dataList} />
+        )}
       </View>
     </ScrollView>
   );

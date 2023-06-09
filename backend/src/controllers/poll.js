@@ -2,15 +2,15 @@ const pool = require("../../db");
 
 exports.addRecipe = async (req, res) => {
   try {
-    const { user_id, recipe_id, vote_count } = req.body;
+    const { user_id, recipe_id, vote_count, house_id } = req.body;
 
     // Insert the recipe into the UserRecipes table
     const query = `
-      INSERT INTO userRecipes (user_id, recipe_id,vote_count)
-      VALUES ($1, $2, $3)
+      INSERT INTO userRecipes (user_id, recipe_id,vote_count,house_id)
+      VALUES ($1, $2, $3, $4)
       RETURNING *
     `;
-    const values = [user_id, recipe_id, vote_count];
+    const values = [user_id, recipe_id, vote_count, house_id];
 
     const result = await pool.query(query, values);
 

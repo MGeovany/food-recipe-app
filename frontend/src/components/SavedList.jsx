@@ -8,12 +8,12 @@ export const SavedList = ({ navigation, recipeList }) => {
   const [dataList, setDataList] = useState([]);
 
   useEffect(() => {
-    const fetchSimilarRecipes = async () => {
+    const fetchSavedRecipes = async () => {
       const recipesInfo = await getRecipesInfo(recipeList);
       setDataList(recipesInfo);
     };
 
-    fetchSimilarRecipes();
+    fetchSavedRecipes();
   }, [recipeList]);
 
   return (
