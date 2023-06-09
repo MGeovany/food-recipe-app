@@ -4,7 +4,7 @@ import { View, Text, Image } from "react-native";
 import { CardItem } from "./CardItem";
 import { getRecipesInfo } from "../api/getRecipes";
 
-export const SavedList = ({ navigation, recipeList }) => {
+export const SavedList = ({ navigation, recipeList, addedToPoll }) => {
   const [dataList, setDataList] = useState([]);
 
   useEffect(() => {
@@ -31,6 +31,7 @@ export const SavedList = ({ navigation, recipeList }) => {
             addBtn={true}
             randomHeight={true}
             saved={true}
+            addedToPoll={addedToPoll ?? false}
           />
         )}
       />

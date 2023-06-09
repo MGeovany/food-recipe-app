@@ -104,7 +104,11 @@ export const Main = ({ navigation }) => {
             </Pressable>
           </View>
         ) : (
-          <SavedList navigation={navigation} recipeList={dataList} />
+          <SavedList
+            navigation={navigation}
+            recipeList={dataList}
+            addedToPoll={true}
+          />
         )}
       </View>
     </ScrollView>

@@ -3,7 +3,14 @@ import { styles } from "../styles";
 import { View, Text, Image, Pressable } from "react-native";
 import { addNewRecipe } from "../api/poll";
 
-export const CardItem = ({ item, addBtn, navigation, randomHeight, saved }) => {
+export const CardItem = ({
+  item,
+  addBtn,
+  navigation,
+  randomHeight,
+  saved,
+  addedToPoll,
+}) => {
   const [addedState, setAddedState] = useState(false);
   const [removedState, setRemovedState] = useState(false);
 
@@ -57,7 +64,7 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight, saved }) => {
             source={item?.image}
           />
 
-          {addBtn ? (
+          {!addedToPoll ? (
             <Pressable onPress={() => handleAddReceipt()}>
               <Image
                 source={require(`../assets/icons/${
@@ -77,7 +84,7 @@ export const CardItem = ({ item, addBtn, navigation, randomHeight, saved }) => {
             <Pressable onPress={handleRemoveReceipt}>
               <Image
                 source={require(`../assets/icons/${
-                  removedState ? "done" : "remove"
+                  !removedState ? "delete" : "done"
                 }.png`)}
                 style={{
                   height: 24,
