@@ -64,3 +64,19 @@ export const addLikeToRecipe = async (recipeId) => {
     console.error(error);
   }
 };
+
+export const finishPoll = async () => {
+  const options = {
+    method: "POST",
+    url: "http://localhost:4000/api/v1/poll/finish",
+    headers: { "Content-Type": "application/json" },
+  };
+
+  try {
+    const response = await axios.request(options);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error finishing poll, please try again.");
+  }
+};

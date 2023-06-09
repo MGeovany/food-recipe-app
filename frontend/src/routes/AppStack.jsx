@@ -10,6 +10,7 @@ import IconHome from "react-native-vector-icons/AntDesign";
 
 import { Main } from "../screens/Main";
 import { HomeStackScreen } from "./HomeStackScreen";
+import { MainStackScreen } from "./MainStackScreen";
 
 export const AppStack = () => {
   const Tab = createBottomTabNavigator();
@@ -70,8 +71,8 @@ export const AppStack = () => {
       }}
     >
       <Tab.Screen
-        name="Que-vamos-a-comer-hoy"
-        component={Main}
+        name="Main"
+        component={MainStackScreen}
         options={tabScreenOptions("main", "")}
       />
 

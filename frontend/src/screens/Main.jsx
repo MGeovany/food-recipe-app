@@ -3,7 +3,7 @@ import { Image, Pressable, ScrollView, Text } from "react-native";
 import { View } from "react-native";
 
 import { styles } from "../styles";
-import { getAllRecipes } from "../api/poll";
+import { finishPoll, getAllRecipes } from "../api/poll";
 import { SavedList } from "../components/SavedList";
 
 export const Main = ({ navigation }) => {
@@ -30,6 +30,22 @@ export const Main = ({ navigation }) => {
 
     fetchPoll();
   }, []);
+
+  const handleFinishPoll = async () => {
+    try {
+      const response = await finishPoll();
+      const winner = response?.winner;
+      console.log("Winner:", winner.recipe_id);
+      console.log("Vote Count:", winner.max_vote_count);
+
+      navigation.navigate("WinnerScreen", {
+        winner: winner.recipe_id,
+        vote_count: winner.max_vote_count,
+      });
+    } catch (error) {
+      console.error("Error finishing poll, error message: ", error);
+    }
+  };
 
   return (
     <ScrollView
@@ -113,7 +129,7 @@ export const Main = ({ navigation }) => {
           </View>
         ) : (
           <View>
-            <Pressable>
+            <Pressable onPress={() => handleFinishPoll()}>
               <View
                 style={{
                   backgroundColor: "#5dbd21",

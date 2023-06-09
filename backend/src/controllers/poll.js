@@ -64,3 +64,24 @@ exports.removeRecipe = async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 };
+
+exports.finishPoll = async (req, res) => {
+  try {
+    const query = `
+      SELECT recipe_id, MAX(vote_count) as max_vote_count
+      FROM userRecipes
+      GROUP BY recipe_id
+      ORDER BY max_vote_count DESC
+      LIMIT 1
+    `;
+    const { rows } = await pool.query(query);
+    const winner = rows[0];
+
+    res.status(200).json({ winner });
+  } catch (error) {
+    console.error("Error finishing poll:", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while finishing the poll" });
+  }
+};

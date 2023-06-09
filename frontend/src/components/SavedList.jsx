@@ -15,7 +15,7 @@ export const SavedList = ({ navigation, recipeList, addedToPoll, likes }) => {
 
       try {
         const recipesInfo = await getRecipesInfo(recipeList);
-        console.log(recipesInfo);
+
         setDataList(recipesInfo);
       } catch (error) {
         console.error("Error fetching saved recipes:", error);
