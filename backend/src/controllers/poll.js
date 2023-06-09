@@ -50,7 +50,8 @@ exports.getAll = async (req, res) => {
 };
 
 exports.removeRecipe = async (req, res) => {
-  const { recipeId, userId } = req.body;
+  const userId = req.query.userId;
+  const recipeId = req.params.recipeId;
 
   try {
     const query =

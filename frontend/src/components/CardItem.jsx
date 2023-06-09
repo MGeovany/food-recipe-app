@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { styles } from "../styles";
 import { View, Text, Image, Pressable } from "react-native";
-import { addNewRecipe } from "../api/poll";
+import { addNewRecipe, deleteRecipe } from "../api/poll";
 
 export const CardItem = ({
   item,
@@ -27,10 +27,13 @@ export const CardItem = ({
       setAddedState(false);
     }, 1000);
   };
-  const handleRemoveReceipt = () => {
+  const handleRemoveReceipt = async () => {
+    const response = await deleteRecipe(1, item?.id);
+    console.log("Removed successfully ", response.status);
     setRemovedState(true);
     setTimeout(() => {
       setRemovedState(false);
+      navigation.navigate("Home");
     }, 1000);
   };
 

@@ -7,20 +7,26 @@ import { getAllRecipes } from "../api/poll";
 import { SavedList } from "../components/SavedList";
 
 export const Main = ({ navigation }) => {
-  const [dataList, setDataList] = useState(null);
+  const [dataList, setDataList] = useState([]);
 
   useEffect(() => {
     const fetchPoll = async () => {
-      const response = await getAllRecipes(1);
+      try {
+        const response = await getAllRecipes(1);
 
-      const inputArray = response.data;
-      const transformedArray = inputArray.map((obj) => {
-        return {
-          id: obj.recipe_id,
-        };
-      });
-      setDataList(transformedArray);
+        const inputArray = response.data;
+        const transformedArray = inputArray.map((obj) => {
+          return {
+            id: obj.recipe_id,
+          };
+        });
+
+        setDataList(transformedArray);
+      } catch (error) {
+        console.error("Error fetching poll:", error);
+      }
     };
+
     fetchPoll();
   }, []);
 
@@ -73,7 +79,7 @@ export const Main = ({ navigation }) => {
           </Text>
         </View>
 
-        {dataList === null ? (
+        {dataList.length <= 0 ? (
           <View
             style={{
               display: "flex",
