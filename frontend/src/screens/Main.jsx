@@ -35,6 +35,7 @@ export const Main = ({ navigation }) => {
     <ScrollView
       style={{
         backgroundColor: "white",
+        paddingBottom: "10rem",
       }}
     >
       <View style={styles.styledContainer}>
