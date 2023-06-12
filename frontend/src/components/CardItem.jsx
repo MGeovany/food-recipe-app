@@ -98,7 +98,7 @@ export const CardItem = ({
                 }}
               />
             </Pressable>
-          ) : addedToPoll && winner ? (
+          ) : addedToPoll && !winner ? (
             <Pressable onPress={handleRemoveReceipt}>
               <Image
                 source={require(`../assets/icons/${

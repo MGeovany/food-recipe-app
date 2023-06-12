@@ -59,7 +59,7 @@ export const Main = ({ navigation }) => {
           style={{
             display: "flex",
             alignItems: "center",
-            textAlign: "center",
+            textAlign: "left",
             padding: "1rem",
           }}
         >
@@ -69,8 +69,8 @@ export const Main = ({ navigation }) => {
               fontWeight: 900,
               fontSize: "24px",
               display: "flex",
-              alignItems: "center",
-              textAlign: "center",
+              alignItems: "flex-start",
+              textAlign: "left",
               color: "#333333",
             }}
           >
