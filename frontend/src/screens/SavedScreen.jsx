@@ -43,7 +43,7 @@ export const SavedScreen = ({ navigation }) => {
           >
             &nbsp;Guardadas
           </Text>
-          <Text style={styles.pageTitle}>para mas tarde</Text>
+          <Text style={styles.pageTitle}>para más tarde</Text>
         </View>
         <SavedList navigation={navigation} recipeList={dataList} />
       </View>

@@ -8,7 +8,6 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/EvilIcons";
 import IconHome from "react-native-vector-icons/AntDesign";
 
-import { Main } from "../screens/Main";
 import { HomeStackScreen } from "./HomeStackScreen";
 import { MainStackScreen } from "./MainStackScreen";
 

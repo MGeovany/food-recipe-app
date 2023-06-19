@@ -90,7 +90,7 @@ export const HomeScreen = ({ navigation }) => {
             marginBottom: "2rem",
           }}
         >
-          Que te gustaria preparar el dia de hoy?
+          Que te gustaría preparar el día de hoy?
         </Text>
         <Searchbar
           style={{
@@ -103,16 +103,16 @@ export const HomeScreen = ({ navigation }) => {
           value={searchQuery}
         />
 
-        <Text style={styles.mainTitle}>Categories</Text>
+        <Text style={styles.mainTitle}>Categorías</Text>
         <CategoriesCarousel setCategory={setCategory} category={category} />
 
         {category === null && searchQuery === "" ? (
           <View>
-            <Text style={styles.mainTitle}>Recomendacion del dia</Text>
+            <Text style={styles.mainTitle}>Recomendación del día</Text>
           </View>
         ) : searchQuery !== "" ? (
           <View>
-            <Text style={styles.mainTitle}>Resultados de busqueda</Text>
+            <Text style={styles.mainTitle}>Resultados de búsqueda</Text>
           </View>
         ) : (
           category !== null && (

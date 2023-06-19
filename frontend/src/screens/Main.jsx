@@ -74,7 +74,7 @@ export const Main = ({ navigation }) => {
               color: "#333333",
             }}
           >
-            Que vamos
+            Que vámos
           </Text>
           <Text
             style={{
