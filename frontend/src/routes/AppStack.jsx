@@ -70,14 +70,14 @@ export const AppStack = () => {
       }}
     >
       <Tab.Screen
-        options={tabScreenOptions("home", "Home")}
+        options={tabScreenOptions("home", "Inicio")}
         name="Home"
         component={HomeStackScreen}
       />
       <Tab.Screen
         name="Search"
         component={SearchScreen}
-        options={tabScreenOptions("search", "Search")}
+        options={tabScreenOptions("search", "Buscar")}
       />
 
       <Tab.Screen
@@ -89,12 +89,12 @@ export const AppStack = () => {
       <Tab.Screen
         name="Bookmarks"
         component={SavedScreen}
-        options={tabScreenOptions("heart", "Liked")}
+        options={tabScreenOptions("heart", "Favoritos")}
       />
       <Tab.Screen
         name="Setting"
         component={SettingScreen}
-        options={tabScreenOptions("gear", "Settings")}
+        options={tabScreenOptions("gear", "Opciones")}
       />
     </Tab.Navigator>
   );
