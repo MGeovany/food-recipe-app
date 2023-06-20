@@ -17,6 +17,7 @@ export const getRandomRecipe = async (amount, tags) => {
 
   try {
     const response = await axios.request(options);
+
     return response.data;
   } catch (error) {
     console.error(error);

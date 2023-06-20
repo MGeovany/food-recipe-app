@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  Pressable,
-  StyleSheet,
-} from "react-native";
+import { View, Text, FlatList, Image, StyleSheet } from "react-native";
 import { PRIMARY_TEXT_COLOR, SECONDARY_TEXT_COLOR } from "../utils/colors";
 import { getRecipeInfo } from "../api/getRecipes";
+import { translate } from "../api/translate";
 
 export const RecipeDetails = ({ recipeId }) => {
   const [recipeDetails, setRecipeDetails] = useState(null);
+  const [translatedDetails, setTranslatedDetails] = useState(null);
 
   useEffect(() => {
     const fetchRecipeDetails = async () => {
@@ -20,6 +15,58 @@ export const RecipeDetails = ({ recipeId }) => {
     };
     fetchRecipeDetails();
   }, [recipeId]);
+
+  const translateText = async (text) => {
+    const translatedText = await translate(text);
+    return translatedText;
+  };
+
+  const translateRecipeDetails = async () => {
+    if (recipeDetails) {
+      const translatedTitle = await translateText(recipeDetails?.title);
+      const translatedSummary = await translateText(recipeDetails?.summary);
+      const translatedInstructions = await translateText(
+        recipeDetails?.instructions
+      );
+
+      let translatedIngredients = [];
+      let translatedStepByStep = [];
+
+      if (Array.isArray(recipeDetails?.extendedIngredients)) {
+        for (const ingredient of recipeDetails?.extendedIngredients) {
+          const translatedIngredient = await translateText(
+            ingredient?.original
+          );
+
+          translatedIngredients?.push(translatedIngredient);
+        }
+      }
+
+      if (Array.isArray(recipeDetails.analyzedInstructions?.[0]?.steps)) {
+        for (const instructions of recipeDetails.analyzedInstructions?.[0]
+          ?.steps) {
+          const translatedInstructions = await translateText(
+            instructions?.step
+          );
+          translatedStepByStep?.push(translatedInstructions);
+        }
+      }
+
+      setTranslatedDetails({
+        ...recipeDetails,
+        title: translatedTitle,
+        summary: translatedSummary,
+        instructions: translatedInstructions,
+        ingredients: translatedIngredients,
+        stepByStep: translatedStepByStep,
+      });
+    }
+  };
+
+  useEffect(() => {
+    translateRecipeDetails();
+  }, [recipeDetails]);
+
   return (
     <View
       style={{
@@ -36,7 +83,7 @@ export const RecipeDetails = ({ recipeId }) => {
             alignItems: "center",
           }}
         >
-          <Text style={styles.mainTitle}>{recipeDetails?.title}</Text>
+          <Text style={styles.mainTitle}>{translatedDetails?.title}</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Image
               style={{
@@ -47,21 +94,21 @@ export const RecipeDetails = ({ recipeId }) => {
               source={require("../assets/icons/timerGray.png")}
             />
             <Text style={styles.contentText}>
-              {recipeDetails?.readyInMinutes} mins
+              {translatedDetails?.readyInMinutes} mins
             </Text>
           </View>
         </View>
         <Text style={styles.contentText}>
-          {recipeDetails?.summary?.replace(/<[^>]+>/g, "")}
+          {translatedDetails?.summary?.replace(/<[^>]+>/g, "")}
         </Text>
       </View>
       <View style={styles.blockP}>
         <Text style={styles.secondaryTitle}>Ingredientes</Text>
         <FlatList
-          data={recipeDetails?.extendedIngredients}
+          data={translatedDetails?.ingredients}
           renderItem={({ item, index }) => (
             <Text key={index} style={styles.contentText}>
-              {"\u2022"} {item.original?.replace(/<[^>]+>/g, "")}
+              {"\u2022"} {item?.replace(/<[^>]+>/g, "")}
             </Text>
           )}
         />
@@ -70,18 +117,18 @@ export const RecipeDetails = ({ recipeId }) => {
         <Text style={styles.secondaryTitle}>Instrucciones</Text>
 
         <Text style={styles.contentText}>
-          {recipeDetails?.instructions?.replace(/<[^>]+>/g, "")}
+          {translatedDetails?.instructions?.replace(/<[^>]+>/g, "")}
         </Text>
       </View>
       <View style={styles.blockP}>
         <Text style={styles.secondaryTitle}>Paso a Paso</Text>
         <Text style={styles.contentText}>
           <FlatList
-            data={recipeDetails?.analyzedInstructions?.[0]?.steps}
+            data={translatedDetails?.stepByStep}
             renderItem={({ item, index }) => (
               <Text key={index} style={styles.contentText}>
-                <Text style={{ fontWeight: 900 }}> Paso {item.number}: </Text>
-                {item.step}
+                <Text style={{ fontWeight: 900 }}> Paso {index + 1}: </Text>
+                {item}
               </Text>
             )}
           />

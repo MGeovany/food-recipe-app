@@ -3,11 +3,7 @@ import MasonryList from "@react-native-seoul/masonry-list";
 import { View, Text, Image, Pressable } from "react-native";
 import { CardItem } from "./CardItem";
 
-export const RecommendationList = ({ category, navigation, recipes }) => {
-  const [isLoadingNext, setIsLoadingNext] = useState(false);
-
-  console.log(recipes);
-
+export const RecommendationList = ({ navigation, recipes }) => {
   return (
     <View>
       <MasonryList

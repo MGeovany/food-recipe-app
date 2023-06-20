@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { styles } from "../styles";
 import { View, Text, Image, Pressable } from "react-native";
 import { addLikeToRecipe, addNewRecipe, deleteRecipe } from "../api/poll";
+import { translate } from "../api/translate";
 
 export const CardItem = ({
   item,
@@ -16,6 +17,15 @@ export const CardItem = ({
   const [addedState, setAddedState] = useState(false);
   const [removedState, setRemovedState] = useState(false);
   const [recipeLikes, setRecipeLikes] = useState(item?.vote_count);
+  const [translatedTitle, setTranslatedTitle] = useState("");
+
+  useEffect(() => {
+    const translateTitle = async () => {
+      const translatedText = await translate(item.title);
+      setTranslatedTitle(translatedText);
+    };
+    translateTitle();
+  }, [item.title]);
 
   const randomBool = randomHeight
     ? useMemo(() => Math.random() < 0.5, [])
@@ -123,7 +133,7 @@ export const CardItem = ({
             marginBottom: "1rem",
           }}
         >
-          <Text style={styles.descTitle}>{item?.title}</Text>
+          <Text style={styles.descTitle}>{translatedTitle}</Text>
 
           {likes ? (
             <View
