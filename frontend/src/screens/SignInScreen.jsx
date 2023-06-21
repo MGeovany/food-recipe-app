@@ -12,10 +12,10 @@ import { getUserInfo } from "../api/getUserInfo";
 import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
 import Icon from "react-native-vector-icons/AntDesign";
 import { fbRoundedBtn, fbTextBtn, styles } from "../styles";
-import GoogleIcon from "../assets/icons";
+import { GoogleIcon } from "../assets/icons/";
 import { useAppContext } from "../context/Auth";
 
-export const SignInScreen = () => {
+export const SignInScreen = ({ navigation }) => {
   const { setAuthData, setUserInfo } = useAppContext();
 
   const [request, response, promptAsync] = Google.useAuthRequest({
@@ -59,16 +59,16 @@ export const SignInScreen = () => {
           }}
         >
           <Text style={styles.pageTitle}>Hey,</Text>
-          <Text style={styles.pageTitle}>Unete a nosotros</Text>
+          <Text style={styles.pageTitle}>Únete a nosotros</Text>
         </View>
 
         <View style={styles.roundedBtn}>
           <IconMaterial name="email" size={30} color="#444" />
-          <Text style={styles.textBtn}>Iniciar sesion con mi Correo</Text>
+          <Text style={styles.textBtn}>Iniciar sesión con mi correo</Text>
         </View>
 
         <View style={{ marginVertical: "3rem", alignItems: "center" }}>
-          <Text style={styles.descText}>O tambien puedes</Text>
+          <Text style={styles.descText}>O también puedes</Text>
         </View>
 
         <Pressable onPress={handleGoogleSession} disabled={!request}>
@@ -76,18 +76,18 @@ export const SignInScreen = () => {
             <View style={styles.roundedBtn}>
               <GoogleIcon height={30} width={30} />
 
-              <Text style={styles.textBtn}>Iniciar sesion con Google</Text>
+              <Text style={styles.textBtn}>Iniciar sesión con Google</Text>
             </View>
           </View>
         </Pressable>
 
         <View style={fbRoundedBtn}>
           <Icon name="facebook-square" size={30} color="#fff" />
-          <Text style={fbTextBtn}>Iniciar sesion con Facebook</Text>
+          <Text style={fbTextBtn}>Iniciar sesión con Facebook</Text>
         </View>
 
         <View style={{ marginVertical: "3rem", alignItems: "center" }}>
-          <Text style={styles.descText}>Aun no tienes cuenta?</Text>
+          <Text style={styles.descText}>¿Aún no tienes cuenta?</Text>
           <Text
             style={{
               fontFamily: "poppins-regular",

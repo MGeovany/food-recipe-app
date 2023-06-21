@@ -15,7 +15,7 @@ export const LandingScreen = ({ navigation }) => {
             <Text style={styles.pageTitle}>
               <Text>Ya no necesitas preguntarte nuevamente</Text>
             </Text>
-            <Text style={styles.titleLogo}>Que vamos a comer hoy?</Text>
+            <Text style={styles.titleLogo}>¿Que vámos a comer hoy?</Text>
             <Text style={styles.descText}>
               <Text>
                 Dinos las preferencias de tu familia y te serviremos deliciosas
@@ -28,7 +28,7 @@ export const LandingScreen = ({ navigation }) => {
               style={{ alignItems: "center" }}
             >
               <View style={styles.mainBtn}>
-                <Text style={mainTextBtn}>Empezamos</Text>
+                <Text style={mainTextBtn}>Empecemos</Text>
               </View>
             </Pressable>
           </View>
