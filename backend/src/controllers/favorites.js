@@ -1,4 +1,4 @@
-const pool = require("../../db");
+const pool = require("../config/db");
 
 exports.getAll = async (req, res) => {
   const userId = req.query.userId;

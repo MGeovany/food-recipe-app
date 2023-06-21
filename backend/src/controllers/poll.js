@@ -1,4 +1,4 @@
-const pool = require("../../db");
+const pool = require("../config/db");
 
 exports.addRecipe = async (req, res) => {
   try {
