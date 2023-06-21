@@ -60,7 +60,7 @@ export const HomeScreen = ({ navigation }) => {
   const categoryTitle = categoryTitles[category];
 
   return (
-    <ScrollView>
+    <ScrollView style={{ marginBottom: "8rem" }}>
       <View style={styles.styledContainer}>
         <View
           style={{
