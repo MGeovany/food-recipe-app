@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View, Button, Pressable } from "react-native";
+import { useEffect } from "react";
+import { Text, View, Pressable } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import {
@@ -9,11 +9,12 @@ import {
   WEB_SECRET_CLIENT,
 } from "@env";
 import { getUserInfo } from "../api/getUserInfo";
-import IconMaterial from "react-native-vector-icons/MaterialCommunityIcons";
+
 import Icon from "react-native-vector-icons/AntDesign";
 import { fbRoundedBtn, fbTextBtn, styles } from "../styles";
 import { GoogleIcon } from "../assets/icons/";
 import { useAppContext } from "../context/Auth";
+import { createUser } from "../api/user";
 
 export const SignInScreen = ({ navigation }) => {
   const { setAuthData, setUserInfo } = useAppContext();
@@ -34,9 +35,19 @@ export const SignInScreen = ({ navigation }) => {
       const token = response.authentication.accessToken;
       getUserInfo(token).then((response) => {
         setAuthData(true);
+        createNewUser(response.id, response.name);
         setUserInfo(response);
       });
     }
+
+    const createNewUser = async (userId, userName) => {
+      const response = await createUser(userId, userName);
+      if (response?.status === 201) {
+        console.log("New user created");
+      } else if (response?.status === 409) {
+        console.log("User already exist");
+      }
+    };
   }, [response]);
 
   const handleGoogleSession = () => {
