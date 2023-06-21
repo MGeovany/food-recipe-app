@@ -21,11 +21,11 @@ export const CardItem = ({
 
   useEffect(() => {
     const translateTitle = async () => {
-      const translatedText = await translate(item.title);
+      const translatedText = await translate(item?.title);
       setTranslatedTitle(translatedText);
     };
     translateTitle();
-  }, [item.title]);
+  }, [item?.title]);
 
   const randomBool = randomHeight
     ? useMemo(() => Math.random() < 0.5, [])
