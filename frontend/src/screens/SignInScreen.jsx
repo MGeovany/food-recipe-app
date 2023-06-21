@@ -55,20 +55,17 @@ export const SignInScreen = ({ navigation }) => {
 
         <View
           style={{
-            marginBottom: "3rem",
+            marginTop: "2rem",
+            marginStart: "1rem",
+            marginBottom: "2rem",
           }}
         >
           <Text style={styles.pageTitle}>Hey,</Text>
           <Text style={styles.pageTitle}>Únete a nosotros</Text>
         </View>
 
-        <View style={styles.roundedBtn}>
-          <IconMaterial name="email" size={30} color="#444" />
-          <Text style={styles.textBtn}>Iniciar sesión con mi correo</Text>
-        </View>
-
         <View style={{ marginVertical: "3rem", alignItems: "center" }}>
-          <Text style={styles.descText}>O también puedes</Text>
+          <Text style={styles.descText}>Inicia sesión a través de:</Text>
         </View>
 
         <Pressable onPress={handleGoogleSession} disabled={!request}>
@@ -87,14 +84,16 @@ export const SignInScreen = ({ navigation }) => {
         </View>
 
         <View style={{ marginVertical: "3rem", alignItems: "center" }}>
-          <Text style={styles.descText}>¿Aún no tienes cuenta?</Text>
+          <Text style={styles.descText}>
+            ¿Tienes problemas inciando sesión?
+          </Text>
           <Text
             style={{
               fontFamily: "poppins-regular",
               fontWeight: "bold",
             }}
           >
-            Crear una cuenta
+            Contáctanos
           </Text>
         </View>
       </View>
