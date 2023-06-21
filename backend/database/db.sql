@@ -7,14 +7,14 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Favorites table
+-- Favorites table (1:N) - users
 CREATE TABLE favorites (
   user_id INT REFERENCES users(id),
   recipe_id VARCHAR(255),
   PRIMARY KEY (user_id, recipe_id)
 );
 
--- Recipes added by a user
+-- Recipes added by a user (1:N) - users
 CREATE TABLE userRecipes (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES users(id),
@@ -31,7 +31,7 @@ CREATE TABLE houses (
   user_ids INT[]
 );
 
--- Votes table
+-- Votes table (1:N) users
 CREATE TABLE votesTable (
   vote_id SERIAL PRIMARY KEY,
   user_id INT REFERENCES users(id),
