@@ -3,13 +3,15 @@ import { ScrollView, Text, View } from "react-native";
 import { styles } from "../styles";
 import { SavedList } from "../components/SavedList";
 import { getSavedRecipes } from "../api/favorites";
+import { useAppContext } from "../context/Auth";
 
 export const SavedScreen = ({ navigation }) => {
   const [dataList, setDataList] = useState([]);
+  const { userInfo } = useAppContext();
 
   useEffect(() => {
     const fetchSavedRecipes = async () => {
-      const response = await getSavedRecipes(1);
+      const response = await getSavedRecipes(userInfo.id);
       const inputArray = response.data;
       const transformedArray = inputArray.map((obj) => {
         return {

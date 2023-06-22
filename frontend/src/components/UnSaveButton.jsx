@@ -1,10 +1,13 @@
 import React from "react";
 import { Image, Pressable } from "react-native";
 import { deleteSavedRecipe } from "../api/favorites";
+import { useAppContext } from "../context/Auth";
 
 export const UnSaveButton = ({ recipeId, navigation }) => {
+  const { userInfo } = useAppContext();
+
   const handleRemoveSavedRecipe = async () => {
-    const response = await deleteSavedRecipe("1", recipeId);
+    const response = await deleteSavedRecipe(userInfo.id, recipeId);
     console.log(
       "Recipe successfully removed from favorites list",
       response?.status

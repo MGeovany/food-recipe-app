@@ -1,10 +1,13 @@
 import React from "react";
 import { Image, Pressable } from "react-native";
 import { saveRecipe } from "../api/favorites";
+import { useAppContext } from "../context/Auth";
 
 export const SaveButton = ({ recipeId }) => {
+  const { userInfo } = useAppContext();
+
   const handleSaveRecipe = async () => {
-    const response = await saveRecipe("1", recipeId);
+    const response = await saveRecipe(userInfo.id, recipeId);
     console.log(
       "Recipe successfully added to favorites list",
       response?.status

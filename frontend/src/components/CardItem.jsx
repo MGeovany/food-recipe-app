@@ -3,10 +3,11 @@ import { styles } from "../styles";
 import { View, Text, Image, Pressable } from "react-native";
 import { addLikeToRecipe, addNewRecipe, deleteRecipe } from "../api/poll";
 import { translate } from "../api/translate";
+import { useAppContext } from "../context/Auth";
 
 export const CardItem = ({
   item,
-  addBtn,
+
   navigation,
   randomHeight,
   saved,
@@ -18,6 +19,7 @@ export const CardItem = ({
   const [removedState, setRemovedState] = useState(false);
   const [recipeLikes, setRecipeLikes] = useState(item?.vote_count);
   const [translatedTitle, setTranslatedTitle] = useState("");
+  const { userInfo } = useAppContext();
 
   useEffect(() => {
     const translateTitle = async () => {
@@ -32,8 +34,8 @@ export const CardItem = ({
     : false;
 
   const handleAddReceipt = async () => {
-    const response = await addNewRecipe(1, item.id, 1, 1);
-    console.log("Added successfully", response.status);
+    const response = await addNewRecipe(userInfo.id, item.id, 1, 2);
+    console.log("Added successfully", response?.status);
 
     setAddedState(true);
     setTimeout(() => {
@@ -41,7 +43,7 @@ export const CardItem = ({
     }, 1000);
   };
   const handleRemoveReceipt = async () => {
-    const response = await deleteRecipe(1, item?.id);
+    const response = await deleteRecipe(userInfo.id, item?.id);
     console.log("Removed successfully ", response.status);
     setRemovedState(true);
     setTimeout(() => {
