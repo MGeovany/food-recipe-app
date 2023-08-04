@@ -2,9 +2,11 @@ import React from "react";
 import { Image, Pressable } from "react-native";
 import { saveRecipe } from "../api/favorites";
 import { useAppContext } from "../context/Auth";
+import { useToast } from "react-native-toast-notifications";
 
 export const SaveButton = ({ recipeId }) => {
   const { userInfo } = useAppContext();
+  const toast = useToast();
 
   const handleSaveRecipe = async () => {
     const response = await saveRecipe(userInfo.id, recipeId);
@@ -12,6 +14,14 @@ export const SaveButton = ({ recipeId }) => {
       "Recipe successfully added to favorites list",
       response?.status
     );
+
+    toast.show("New recipe saved successfully", {
+      type: "normal",
+      placement: "top",
+      duration: 4000,
+      offset: 30,
+      animationType: "slide-in",
+    });
   };
   return (
     <Pressable

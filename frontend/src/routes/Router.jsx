@@ -7,8 +7,8 @@ import { loadFonts } from "../styles/expoFont";
 import { useAppContext } from "../context/Auth";
 
 export const Router = () => {
-  //  const { authData } = useAppContext();
-  const authData = true;
+  const { authData } = useAppContext();
+  // const authData = true;
   const [fontsLoaded] = useFonts({
     "poppins-regular": require("../../assets/fonts/Poppins-Medium.ttf"),
   });

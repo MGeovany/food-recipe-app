@@ -4,6 +4,7 @@ import { View, Text, Image, Pressable } from "react-native";
 import { addLikeToRecipe, addNewRecipe, deleteRecipe } from "../api/poll";
 import { translate } from "../api/translate";
 import { useAppContext } from "../context/Auth";
+import { useToast } from "react-native-toast-notifications";
 
 export const CardItem = ({
   item,
@@ -20,6 +21,7 @@ export const CardItem = ({
   const [recipeLikes, setRecipeLikes] = useState(item?.vote_count);
   const [translatedTitle, setTranslatedTitle] = useState("");
   const { userInfo } = useAppContext();
+  const toast = useToast();
 
   useEffect(() => {
     const translateTitle = async () => {
@@ -41,6 +43,14 @@ export const CardItem = ({
     setTimeout(() => {
       setAddedState(false);
     }, 1000);
+
+    toast.show("New recipe added to the poll", {
+      type: "normal",
+      placement: "top",
+      duration: 4000,
+      offset: 30,
+      animationType: "slide-in",
+    });
   };
   const handleRemoveReceipt = async () => {
     const response = await deleteRecipe(userInfo.id, item?.id);

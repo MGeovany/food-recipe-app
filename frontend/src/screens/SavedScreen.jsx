@@ -11,7 +11,7 @@ export const SavedScreen = ({ navigation }) => {
 
   useEffect(() => {
     const fetchSavedRecipes = async () => {
-      const response = await getSavedRecipes(userInfo.id);
+      const response = await getSavedRecipes(3232);
       const inputArray = response.data;
       const transformedArray = inputArray.map((obj) => {
         return {
