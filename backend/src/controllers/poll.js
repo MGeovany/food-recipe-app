@@ -28,8 +28,6 @@ exports.getAll = async (req, res) => {
   try {
     const houseId = req.params.houseId;
 
-    console.log(req);
-    // Query the UserRecipes table for recipes in the specified house
     const query = `
       SELECT *
       FROM userRecipes

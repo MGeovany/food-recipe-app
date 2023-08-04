@@ -29,6 +29,7 @@ export const getAllRecipes = async (houseId) => {
 
   try {
     const response = await axios.request(options);
+    console.log(response.data);
     return response;
   } catch (error) {
     console.error(error);

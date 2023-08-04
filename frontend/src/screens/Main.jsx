@@ -12,7 +12,7 @@ export const Main = ({ navigation }) => {
   useEffect(() => {
     const fetchPoll = async () => {
       try {
-        const response = await getAllRecipes(1);
+        const response = await getAllRecipes(2);
 
         const inputArray = response.data;
         const transformedArray = inputArray.map((obj) => {
@@ -29,7 +29,7 @@ export const Main = ({ navigation }) => {
     };
 
     fetchPoll();
-  }, []);
+  }, [navigation]);
 
   const handleFinishPoll = async () => {
     try {

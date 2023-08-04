@@ -12,7 +12,7 @@ import { getUserInfo } from "../api/getUserInfo";
 
 import Icon from "react-native-vector-icons/AntDesign";
 import { fbRoundedBtn, fbTextBtn, styles } from "../styles";
-import { GoogleIcon } from "../assets/icons/";
+import { Apple, GoogleIcon, MicrosoftIcon } from "../assets/icons/";
 import { useAppContext } from "../context/Auth";
 import { createUser } from "../api/user";
 
@@ -80,7 +80,7 @@ export const SignInScreen = ({ navigation }) => {
         </View>
 
         <Pressable onPress={handleGoogleSession} disabled={!request}>
-          <View style={{ marginBottom: "2rem" }}>
+          <View style={{ marginBottom: "1rem" }}>
             <View style={styles.roundedBtn}>
               <GoogleIcon height={30} width={30} />
 
@@ -93,6 +93,24 @@ export const SignInScreen = ({ navigation }) => {
           <Icon name="facebook-square" size={30} color="#fff" />
           <Text style={fbTextBtn}>Iniciar sesión con Facebook</Text>
         </View>
+
+        <Pressable onPress={handleGoogleSession} disabled={!request}>
+          <View style={{ marginTop: "1rem" }}>
+            <View style={styles.roundedBtn}>
+              <Apple height={30} width={30} />
+              <Text style={styles.textBtn}>Iniciar sesión con Apple ID</Text>
+            </View>
+          </View>
+        </Pressable>
+
+        <Pressable onPress={handleGoogleSession} disabled={!request}>
+          <View style={{ marginTop: "1rem" }}>
+            <View style={styles.roundedBtn}>
+              <MicrosoftIcon height={30} width={30} />
+              <Text style={styles.textBtn}>Iniciar sesión con Microsoft</Text>
+            </View>
+          </View>
+        </Pressable>
 
         <View style={{ marginVertical: "3rem", alignItems: "center" }}>
           <Text style={styles.descText}>
